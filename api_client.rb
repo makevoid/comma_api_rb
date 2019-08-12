@@ -8,7 +8,7 @@ class CommaAPI
   class << self
 
     def me
-      get "/me/"
+      get "/me"
     end
 
     def devices
@@ -20,7 +20,7 @@ class CommaAPI
     end
 
     def deviceDefault
-      return JSON.parse error: 'Error: DONGLE_ID_DEFAULT is missing - this method cannot be executed, you need to specify a dongle id' 
+      return JSON.parse error: 'Error: DONGLE_ID_DEFAULT is missing - this method cannot be executed, you need to specify a dongle id'
       get "/me/devices"
     end
 
@@ -28,7 +28,8 @@ class CommaAPI
     # helper
 
     def get(method_name)
-      request url: "#{API_HOST}/v1/#{method_name}"
+      # note: trailing slash gets added here
+      request url: "#{API_HOST}/v1/#{method_name}/"
     end
 
   end
@@ -36,6 +37,5 @@ class CommaAPI
 end
 
 if __FILE__ == $0 # $PROGRAM_FILE
-  me = CommaAPI.me()
-  puts("me:", me)
+  require_relative 'examples/default_example'
 end
