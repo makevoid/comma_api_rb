@@ -29,3 +29,14 @@ module HTTP
   end
 
 end
+
+
+# TODO: move (and refactor with refinements)
+
+module Monkeypatches
+  class ::Hash
+    alias :f :fetch
+  end
+end
+
+include Monkeypatches
