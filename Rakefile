@@ -1,6 +1,6 @@
 desc "Run"
 task :run do
-  sh "ruby api.rb"
+  sh "ruby api_client.rb"
 end
 
 task default: :run

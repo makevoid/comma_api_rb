@@ -2,17 +2,12 @@ require "net/https"
 require 'json'
 # require 'bundler'
 # Bundler.require :default
+require_relative 'config'
 
 PATH = File.expand_path "./"
 
 # -----
 # TODO: refactor
-
-module Config
-  JWT_TOKEN = ENV["JWT_TOKEN"] || ENV["COMMA_JWT_TOKEN"]
-  raise "JWT_TOKEN not defined, please pass it as ENV variable (rake JWT_TOKEN=YourJwtToken....)" unless JWT_TOKEN
-  API_HOST = "https://api.comma.ai"
-end
 
 module HTTP
 
