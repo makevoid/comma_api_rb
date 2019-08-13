@@ -75,8 +75,8 @@ contract ETHFaucet {
     users
   }
 
-  distribute = -> (address) {
-    sendErc20
+  distribute = -> (address, amount) {
+    sendErc20 address, amount
   }
 
   is_int = -> {
