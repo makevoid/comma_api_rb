@@ -29,18 +29,6 @@ This is the prerequisite for a bigger project
 
 My final target is to produce open source code so that someone can launch a Comma AI Comma points Eth/xDai Fauced DAO!!! :D
 
-### The DAO will
-
-- create a faucet/DAO
-- accept funds
-- redistribute funds every week folowing
-
-time to build a poc? 1 week (4 weekends) - hopefully I can try to attempt this :D
-
-
-### OK, back to reality (this repo)
-
-
 
 ### TODO
 
