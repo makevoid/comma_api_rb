@@ -8,49 +8,59 @@ class CommaAPI
   class << self
 
     def me
-      get "/me/"
+      get "/v1/me/"
     end
 
     def devices
-      get "/me/devices/"
+      get "/v1/me/devices/"
     end
 
     def device(id:)
-      # TODO: complete device()
-      get "/me/devices/"
+      get "/v1.1/devices/#{id}/"
+    end
+
+    def deviceLocation(id:)
+      get "/v1/devices/#{id}/location"
+    end
+
+    def deviceDefaultLocation
+      return device404Error unless DONGLE_ID_DEFAULT
+      deviceLocation id: DONGLE_ID_DEFAULT
     end
 
     def deviceDefault
-      # TODO: complete deviceDefault()
       return device404Error unless DONGLE_ID_DEFAULT
-      get "/me/devices/"
+      device id: DONGLE_ID_DEFAULT
     end
 
-    def deviceStats
+    def deviceDefaultStats
       return device404Error unless DONGLE_ID_DEFAULT
-      get "/devices/#{DONGLE_ID_DEFAULT}/stats#{args}"
+      deviceStats id: DONGLE_ID_DEFAULT
     end
 
-    def devicesStats(id:)
-      devices = get "/devices"
+    def deviceStats(id:)
+      get "/v1/devices/#{id}/stats"
+    end
+
+    def devicesStat(id:)
+      devices = get "/v1/devices"
       # TODO: loop through all devices, return all stats and a total
       devices.map { |device|
-
-        get "/devices/#{device.f("dongle_id")}/stats#{args}"
+        get "/v1/devices/#{device.f("dongle_id")}/stats#{args}"
       }
     end
 
     def deviceStatsId(id:)
-      get "/devices/#{id}/stats#{args}"
+      get "/v1/devices/#{id}/stats#{args}"
     end
 
     def segments
       return device404Error unless DONGLE_ID_DEFAULT
-      get "/devices/#{DONGLE_ID_DEFAULT}/segments#{args}"
+      get "/v1/devices/#{DONGLE_ID_DEFAULT}/segments#{args}"
     end
 
     def deviceSegments(id:)
-      get "/devices/#{id}/segments#{args}"
+      get "/v1/devices/#{id}/segments#{args}"
     end
 
     def args
@@ -62,12 +72,17 @@ class CommaAPI
       "?from=#{(Time.now - one_week - 1).to_i}"
     end
 
+    def opAuth
+      "https://api.commadotai.com/v2/pilotauth/"
+    end
+
+
     # helper
 
     def get(method_name)
       # note: trailing slash gets added here
       puts "requesting: #{method_name}"
-      url = "#{API_HOST}/v1#{method_name}"
+      url = "#{API_HOST}#{method_name}"
       puts url
       request url: url
     end
