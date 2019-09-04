@@ -1,4 +1,4 @@
-# openpilot-api-rb
+# comma-api-rb
 
 API Client for api.comma.ai
 
