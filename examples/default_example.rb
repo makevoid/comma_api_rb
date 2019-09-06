@@ -92,6 +92,21 @@ source.addEventListener('message', (event) => {
 # distance, minutes, routes
 # total stats: miles driven, minutes, number of sessions
 
+puts "\n\nAthena\n---\n"
+#
+# thermal = Athena.thermal()
+# puts "thermal: #{thermal}\n\n"
+#
+# health = Athena.health()
+# puts "health: #{health}\n\n"
+
+androidLog = Athena.logMessage()
+puts "androidLog: #{androidLog}\n\n"
+
+# gpsLocation = Athena.gpsLocation()
+# puts "gpsLocation: #{gpsLocation}\n\n"
+
+# ---
 
 
 # devices = CommaAPI.devices()

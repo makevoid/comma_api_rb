@@ -1,13 +1,6 @@
 const lineChartOptions = {
 
 }
-
-
-
-
-
-
-
 const chartOptions = {
 	type: 'line',
 	options: lineChartOptions,

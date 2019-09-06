@@ -37,8 +37,14 @@ Log = -> (msg) {
 
 FetchLocation = -> {
   deviceLoc = CommaAPI.deviceDefaultLocation()
-  Log.("new device location: #{deviceLoc}\n\n")
+  Log.("location: #{deviceLoc}\n\n")
   deviceLoc
+}
+
+FetchStats = -> {
+  stats = CommaAPI.deviceDefaultStats()
+  Log.("stats: #{stats}\n\n")
+  stats
 }
 
 
@@ -61,9 +67,9 @@ class Api < Roda
       response['Content-Type'] = 'text/event-stream'
       stream do |out|
         while true do
-          data = FetchLocation.()
+          data = FetchStats.()
           puts "loc: #{data}"
-          out << FormatStream::Format.(:update_location, data)
+          out << FormatStream::Format.(:update, data)
           sleep 3
         end
       end
