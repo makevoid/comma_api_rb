@@ -48,10 +48,10 @@ const gps1Elem = document.querySelector(".gps1")
 const compassElem = document.querySelector(".compass")
 
 data = { data: data1 }
-const gps			= new Chart( gps1Elem, 		merge(chartOptions, data1) )
+const gps = new Chart( gps1Elem, merge(chartOptions, data1) )
 
 data = { data: data2 }
-const compass	= new Chart( compassElem, merge(chartOptions, data2) )
+const compass = new Chart( compassElem, merge(chartOptions, data2) )
 
 const host = "localhost:3000"
 
