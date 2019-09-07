@@ -2,24 +2,23 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title>Comma API Live Data</title>
+    <title>Comma+Athena API Live Data</title>
+    <link rel="stylesheet" href="./vendor/css/bulma.css">
     <style media="screen">
 
     </style>
   </head>
   <body>
-    <h1>API</h1>
-    <!-- I'm making this to do a chart visualization of the available data -->
+    <section class="section">
+      <div class="container is-fluid">
+        <p class="title">Comma+Athena API Live Data</p>
+        <!-- I'm making this to do a chart visualization of the available data -->
 
-    <p>
-      <!-- I'm making this to do a chart visualization of the available data -->
+        <canvas id="gps1" class="gps1 gps1Chart chart1"></canvas>
 
-    </p>
-
-    <canvas id="gps1" class="gps1 gps1Chart chart1"></canvas>
-
-    <canvas id="compass" class="compass compassChart chart2"></canvas>
-
+        <canvas id="compass" class="compass compassChart chart2"></canvas>
+      </div>
+    </section>
 
     <script src="./node_modules/chart.js/dist/Chart.bundle.min.js" charset="utf-8"></script>
     <script src="./index.js" charset="utf-8"></script>
