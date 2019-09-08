@@ -20,14 +20,10 @@ const data2 = {}
 const data1 = { data: {
         labels: ['t0'],
         datasets: [{
-            label: '# of Votes',
-            data: [2100],
-            backgroundColor: [
-                'rgba(255, 99, 132, 0.2)',
-            ],
-            borderColor: [
-                'rgba(255, 99, 132, 1)',
-            ],
+            label: 't0-label',
+            data: [ 2100 ],
+            backgroundColor: [ 'rgba(255, 99, 132, 0.2)' ],
+            borderColor: [ 'rgba(255, 99, 132, 1)' ],
             borderWidth: 1
         }]
     }, }
@@ -66,6 +62,7 @@ const source = new EventSource(`http://${host}/data`)
 let index = 1
 
 source.addEventListener('message', (event) => {
+	
 	const data = JSON.parse(event.data)
 	console.log(data)
   console.log(data.minutes)

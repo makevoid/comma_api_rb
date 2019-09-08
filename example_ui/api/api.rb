@@ -55,6 +55,12 @@ class Api < Roda
 
   plugin :streaming
 
+  DataTick = -> () {
+    data = FetchStats.()
+    puts "loc: #{data}"
+    FormatStream::Format.(:update, data)
+  }
+
   route do |r|
 
     r.root do
@@ -64,11 +70,10 @@ class Api < Roda
     r.on "data" do
       response['Access-Control-Allow-Origin'] = CONFIG[:host]
       response['Content-Type'] = 'text/event-stream'
+
       stream do |out|
         while true do
-          data = FetchStats.()
-          puts "loc: #{data}"
-          out << FormatStream::Format.(:update, data)
+          out << DataTick.()
           sleep 3
         end
       end
