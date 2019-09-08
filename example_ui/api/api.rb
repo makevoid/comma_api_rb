@@ -1,13 +1,12 @@
 require_relative '../../api_client'
+require_relative 'api/env'
+
 
 # # TODO:
-# require_relative 'env'
 
 # require 'bundler'
 # Bundler.require :default
 
-require "oj"
-require "roda"
 
 module FormatStream
 
