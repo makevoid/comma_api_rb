@@ -1,6 +1,9 @@
+let data
+
 const lineChartOptions = {
 
 }
+
 const chartOptions = {
 	type: 'line',
 	options: lineChartOptions,
@@ -17,18 +20,36 @@ const merge = (obj1, obj2) =>
 // const data1 = [1, 2, 3]
 const data2 = {}
 
-const data1 = { data: {
-        labels: ['t0'],
-        datasets: [{
-            label: 't0-label',
-            data: [ 2100 ],
-            backgroundColor: [ 'rgba(255, 99, 132, 0.2)' ],
-            borderColor: [ 'rgba(255, 99, 132, 1)' ],
-            borderWidth: 1
-        }]
-    }, }
+const chartDataset1 = {
+	// data
+	label: 't0-label',
+	data: [ 2100 ],
+	// visual
+	borderWidth: 1,
+	backgroundColor: 	[ 'rgba(255, 99, 132, 0.2)' ],
+	borderColor: 			[ 'rgba(255, 99, 132, 1)' ],
+}
 
-let data
+const chartDataset2 = {
+	// data
+	label: 't1-label',
+	data: [ 2400 ],
+}
+
+const data1 = {
+	data: {
+		labels: 	['t0'],
+    datasets: [chartDataset],
+	},
+}
+
+const data2 = {
+	data: {
+		labels: 	['t0'],
+    datasets: [chartDataset],
+	},
+}
+
 
 const gps1Elem = document.querySelector(".gps1")
 const compassElem = document.querySelector(".compass")
@@ -62,7 +83,7 @@ const source = new EventSource(`http://${host}/data`)
 let index = 1
 
 source.addEventListener('message', (event) => {
-	
+
 	const data = JSON.parse(event.data)
 	console.log(data)
   console.log(data.minutes)
