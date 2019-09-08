@@ -17,8 +17,6 @@ const chartOptions = {
 const merge = (obj1, obj2) =>
 	Object.assign(obj1, obj2)
 
-// const data1 = [1, 2, 3]
-const data2 = {}
 
 const chartDataset1 = {
 	// data
@@ -39,14 +37,14 @@ const chartDataset2 = {
 const data1 = {
 	data: {
 		labels: 	['t0'],
-    datasets: [chartDataset],
+    datasets: [chartDataset1],
 	},
 }
 
 const data2 = {
 	data: {
 		labels: 	['t0'],
-    datasets: [chartDataset],
+    datasets: [chartDataset2],
 	},
 }
 
@@ -85,8 +83,6 @@ let index = 1
 source.addEventListener('message', (event) => {
 
 	const data = JSON.parse(event.data)
-	console.log(data)
-  console.log(data.minutes)
 	addData(`t${index}`, data.minutes)
 	index++
 
