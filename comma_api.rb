@@ -5,9 +5,13 @@ class CommaAPI
 
   class << self
 
+    # user
+
     def me
       get "/v1/me/"
     end
+
+    # devices
 
     def devices
       get "/v1/me/devices/"
@@ -52,13 +56,31 @@ class CommaAPI
       get "/v1/devices/#{id}/stats#{args}"
     end
 
+    # routes
+
+    def route(route_name:)
+      get "/v1/route/#{route_name}/"
+    end
+
+    def routeFiles(route_name:)
+      get "/v1/route/#{route_name}/files"
+    end
+
+    # segments
+
     def segments
       return device404Error unless DONGLE_ID_DEFAULT
       get "/v1/devices/#{DONGLE_ID_DEFAULT}/segments#{args}"
     end
 
     def deviceSegments(id:)
+      return device404Error unless DONGLE_ID_DEFAULT
       get "/v1/devices/#{id}/segments#{args}"
+    end
+
+    def deviceDefaultSegments
+      return device404Error unless DONGLE_ID_DEFAULT
+      deviceSegments id: DONGLE_ID_DEFAULT
     end
 
     def args

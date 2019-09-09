@@ -1,4 +1,5 @@
 class RPCError; end
+class RPCError404 < RPCError; end
 
 module HTTP
 
@@ -7,6 +8,7 @@ module HTTP
     req  = Net::HTTP::Get.new uri.request_uri
     req["Authorization"] = "JWT #{::JWT_TOKEN}"
     resp = http(uri: uri).request req
+    return RPCError404.new if resp.code == "404"
     JSON.parse resp.body
   end
 

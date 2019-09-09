@@ -1,5 +1,6 @@
 require "net/https"
 require 'json'
+require 'cgi'
 # require 'bundler'
 # Bundler.require :default
 require_relative 'config'
