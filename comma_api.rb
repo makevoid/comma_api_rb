@@ -1,0 +1,97 @@
+class CommaAPI
+
+  extend Config
+  extend HTTP
+
+  class << self
+
+    def me
+      get "/v1/me/"
+    end
+
+    def devices
+      get "/v1/me/devices/"
+    end
+
+    def device(id:)
+      get "/v1.1/devices/#{id}/"
+    end
+
+    def deviceLocation(id:)
+      get "/v1/devices/#{id}/location"
+    end
+
+    def deviceDefaultLocation
+      return device404Error unless DONGLE_ID_DEFAULT
+      deviceLocation id: DONGLE_ID_DEFAULT
+    end
+
+    def deviceDefault
+      return device404Error unless DONGLE_ID_DEFAULT
+      device id: DONGLE_ID_DEFAULT
+    end
+
+    def deviceDefaultStats
+      return device404Error unless DONGLE_ID_DEFAULT
+      deviceStats id: DONGLE_ID_DEFAULT
+    end
+
+    def deviceStats(id:)
+      get "/v1/devices/#{id}/stats"
+    end
+
+    def devicesStat(id:)
+      devices = get "/v1/devices"
+      # TODO: loop through all devices, return all stats and a total
+      devices.map { |device|
+        get "/v1/devices/#{device.f("dongle_id")}/stats#{args}"
+      }
+    end
+
+    def deviceStatsId(id:)
+      get "/v1/devices/#{id}/stats#{args}"
+    end
+
+    def segments
+      return device404Error unless DONGLE_ID_DEFAULT
+      get "/v1/devices/#{DONGLE_ID_DEFAULT}/segments#{args}"
+    end
+
+    def deviceSegments(id:)
+      get "/v1/devices/#{id}/segments#{args}"
+    end
+
+    def args
+      defaultArgs # alias (alias :args :defaultArgs)
+    end
+
+    def defaultArgs
+      one_week = 604800
+      "?from=#{(Time.now - one_week - 1).to_i}"
+    end
+
+    def opAuth
+      "https://api.commadotai.com/v2/pilotauth/"
+    end
+
+
+    # helper
+
+    def get(method_name)
+      # note: trailing slash gets added here
+      puts "requesting: #{method_name}"
+      url = "#{API_HOST}#{method_name}"
+      puts url
+      request url: url
+    end
+
+
+    # errors
+
+    def device404Error
+      { error: 'Error: DONGLE_ID_DEFAULT is missing - this method cannot be executed, you need to specify a dongle id' }.to_json
+    end
+
+  end
+
+end

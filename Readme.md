@@ -9,20 +9,20 @@ API Client for api.comma.ai
 
 ```rb
 me = CommaAPI.me()
-puts("me:", me) # {"email":"makevoid@example.com","id":"12345....","points":2708,"prime":null,"regdate":1563123456,"superuser":false,"upload_video":false,"username":"antani12345"}
+puts("me:", me) #=> {"email":"makevoid@example.com","id":"12345....","points":2708,"prime":null,"regdate":1563123456,"superuser":false,"upload_video":false,"username":"antani12345"}
 ```
 
 #### Athena API
 
-Your EON needs to be on 
+Your EON needs to be on for these calls to work
 
 ```rb
-me = CommaAPI.me()
-puts("me:", me) # {"email":"makevoid@example.com","id":"12345....","points":2708,"prime":null,"regdate":1563123456,"superuser":false,"upload_video":false,"username":"antani12345"}
+me = AthenaAPI.logMessage()
+puts("logMessage:", logMessage) #=> { ... }
 ```
 
 
-See more in the examples contained in the `example` (duh) dir. 
+See more in the examples contained in the `example` (duh) dir.
 
 enjoy :)
 
