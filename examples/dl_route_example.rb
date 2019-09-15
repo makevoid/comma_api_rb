@@ -2,7 +2,7 @@
 
 require_relative '../api_client'
 
-route_id = "........"
+route_id = ENV["ROUTE_ID"] || "........" # put here your route id
 route_id = CGI.escape route_id
 
 routeFiles = CommaAPI.routeFiles route_name: route_id
@@ -22,17 +22,3 @@ routeFiles.fetch("cameras").each_with_index do |camera, idx|
     file.write data
   end
 end
-
-
-
-
-#  ---
-
-# me = CommaAPI.me()
-# puts "me: #{me}\n\n"
-
-# segments = CommaAPI.deviceDefaultSegments
-# puts "segments: #{segments}\n\n"
-
-# route = CommaAPI.route route_name: route_id
-# puts "route: #{route}\n\n"
