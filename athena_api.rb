@@ -67,6 +67,7 @@ class AthenaAPI
     end
 
     def parse_rpc(resp, service:)
+      return RPCError.new if resp["error"] == "Timed out"
       return RPCError.new if resp["error"] && resp["error"]["message"] == "Server error"
       result = resp.fetch "result"
       result = result[service] if result[service]
