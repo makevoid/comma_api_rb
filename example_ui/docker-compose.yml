@@ -2,9 +2,11 @@ version: "3.7"
 
 services:
   ui:
+    image: makevoid/comma_api_example_ui
     build:
       context: .
 
   api:
+    image: makevoid/comma_api_example_api
     build:
       context: api
