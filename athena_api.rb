@@ -18,6 +18,10 @@ class AthenaAPI
       post_rpc m: "getMessage", service: "health"
     end
 
+    def carState
+      post_rpc m: "getMessage", service: "carState"
+    end
+
     def logMessage
       post_rpc m: "getMessage", service: "logMessage"
     end

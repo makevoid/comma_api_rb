@@ -13,13 +13,20 @@ FetchStats = -> {
   stats
 }
 
+FetchCarState = -> {
+  carState = AthenaAPI.carState()
+  Log.("carState: #{carState}\n\n")
+  carState
+}
 
 class Api < Roda
 
   plugin :streaming
 
   DataTick = -> () {
-    data = FetchStats.()
+    data = {
+      carState: FetchCarState.(),
+    }
     puts "loc: #{data}"
     FormatStream::Format.(:update, data)
   }

@@ -1,4 +1,4 @@
 require_relative '../api_client'
 
-androidLog = AthenaAPI.logMessage()
-puts "androidLog: #{androidLog}\n\n"
+carState = AthenaAPI.carState()
+puts "carState: #{carState}\n\n"
