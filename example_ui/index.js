@@ -75,9 +75,11 @@ const data4 = {
 // chart helpers
 
 const addData = (label, data, chart) => {
+  const maxSize = 34
+  if (chart.data.labels.length > maxSize) chart.data.labels.shift()
 	chart.data.labels.push(label)
-  if (chart.data.datasets.length > 29) dataset.data.pop()
 	chart.data.datasets.forEach((dataset) => {
+    if (dataset.data.length > maxSize) dataset.data.shift()
 	  dataset.data.push(data)
 	})
 	chart.update()

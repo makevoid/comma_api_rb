@@ -11,7 +11,6 @@ class AthenaAPI
     STATE[:rpc_id] += 1
   }
 
-
   class << self
 
     def health
