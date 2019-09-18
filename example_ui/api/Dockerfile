@@ -1,14 +1,16 @@
-FROM ruby
+FROM ruby:2.6-alpine
+
+RUN gem i bundler
 
 RUN mkdir /app
 
 WORKDIR /app
 
-COPY Gemfile* .
+COPY Gemfile* ./
 
-RUN bundle install
+RUN bundle install --without development
 # TODO: only production
 
-COPY . .
+COPY . ./
 
 CMD bundle exec rake

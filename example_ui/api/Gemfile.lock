@@ -2,10 +2,10 @@ GEM
   remote: https://rubygems.org/
   specs:
     nio4r (2.5.1)
-    oj (3.9.1)
     puma (4.1.0)
       nio4r (~> 2.0)
     rack (2.0.7)
+    rake (12.3.3)
     roda (3.23.0)
       rack
 
@@ -13,8 +13,8 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  oj
   puma
+  rake
   roda
 
 BUNDLED WITH

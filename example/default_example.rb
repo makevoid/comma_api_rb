@@ -40,7 +40,7 @@ module FormatStream
   # private
 
   JSONDump = -> (hash) {
-    Oj.dump(hash, mode: :compat)
+    hash.to_json
   }
 
 end
