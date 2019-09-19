@@ -1,5 +1,5 @@
 # temporary - in the final example use this as rubygem
-require_relative '../../api_client'
+# require_relative '../../api_client'
 require_relative 'api_lib'
 
 # with bundler
@@ -11,5 +11,7 @@ Bundler.require :default
 # require "roda"
 
 CONFIG = {
-  host: "http://localhost:3001"
+  # host: "http://athena-dashboard.mkv.run". # remote
+  host: "http://localhost", # docker
+  # host: "http://localhost:3001". # local
 }

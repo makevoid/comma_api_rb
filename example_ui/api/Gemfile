@@ -6,6 +6,9 @@ gem "rake"
 
 gem "roda"
 
+gem "comma-api-rb"
+# gem "comma-api-rb", path: "../../"
+
 group :development do
   gem "puma"
 end

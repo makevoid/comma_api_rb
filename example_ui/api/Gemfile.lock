@@ -1,6 +1,7 @@
 GEM
   remote: https://rubygems.org/
   specs:
+    comma-api-rb (0.3.0)
     nio4r (2.5.1)
     puma (4.1.0)
       nio4r (~> 2.0)
@@ -13,6 +14,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  comma-api-rb
   puma
   rake
   roda

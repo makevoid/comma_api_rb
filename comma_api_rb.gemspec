@@ -6,7 +6,8 @@ Gem::Specification.new do |s|
   s.description = "Comma and Athena API ruby library (prototype - this version is currently in WIP, public API and functionality is guaranteed to change overtime :D, thanks for understanding)"
   s.authors     = ["@makevoid - Francesco Canessa"]
   s.email       = "makevoid@gmail.com"
-  s.files       = Dir.glob("./*.rb")
+  s.files       = Dir.glob("./lib/*.rb")
+  s.require_paths = ['lib']
   s.homepage    = "https://github.com/makevoid/comma_api_rb"
   s.metadata    = { "source_code_uri" => "https://github.com/makevoid/comma_api_rb" }
 end
