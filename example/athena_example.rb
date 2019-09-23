@@ -1,7 +1,8 @@
-require 'comma-api-rb/comma-api-rb'
+# require 'comma-api-rb'
 
+require_relative '../lib/comma-api-rb'
 
-# require_relative '../api_client'
+Athena = CommaAPI::Athena
 
-carState = AthenaAPI.carState()
+carState = Athena.carState()
 puts "carState: #{carState}\n\n"

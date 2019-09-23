@@ -6,9 +6,7 @@ gem "rake"
 
 gem "roda"
 
-gem "comma-api-rb"
-# gem "comma-api-rb", path: "../../"
+gem "comma-api-rb", require: "comma-api-rb" # release
+# gem "comma-api-rb", path: "../../", require: "comma-api-rb" # dev env
 
-group :development do
-  gem "puma"
-end
+gem "puma"

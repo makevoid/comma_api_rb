@@ -1,23 +1,27 @@
-module Config
+module CommaAPI
 
-  API_HOST = "https://api.comma.ai"
+  module Config
 
-  ::JWT_TOKEN = ENV["JWT_TOKEN"] || ENV["COMMA_JWT_TOKEN"]
-  raise "JWT_TOKEN not defined, please pass it as ENV variable (rake JWT_TOKEN=YourJwtToken....)" unless JWT_TOKEN
+    API_HOST = "https://api.comma.ai"
 
-  DONGLE_ID_DEFAULT = ENV["DONGLE_ID_DEFAULT"]
+    ::JWT_TOKEN = ENV["JWT_TOKEN"] || ENV["COMMA_JWT_TOKEN"]
+    raise "JWT_TOKEN not defined, please pass it as ENV variable (rake JWT_TOKEN=YourJwtToken....)" unless JWT_TOKEN
 
-
-  # default device id - used on the `.deviceDefault()` methods
-
-end
+    DONGLE_ID_DEFAULT = ENV["DONGLE_ID_DEFAULT"]
 
 
-module ConfigAthena
+    # default device id - used on the `.deviceDefault()` methods
 
-  API_HOST = "https://athena.comma.ai"
+  end
 
-  # ::JWT_TOKEN = Config::JWT_TOKEN
-  DONGLE_ID_DEFAULT = Config::DONGLE_ID_DEFAULT
+
+  module ConfigAthena
+
+    API_HOST = "https://athena.comma.ai"
+
+    # ::JWT_TOKEN = Config::JWT_TOKEN
+    DONGLE_ID_DEFAULT = Config::DONGLE_ID_DEFAULT
+
+  end
 
 end

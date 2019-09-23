@@ -11,5 +11,19 @@ services:
     image: makevoid/comma_api_example_api
     build:
       context: api
+      args:
+        - JWT_TOKEN
     ports:
       - 3000:3000
+
+  # dev-api
+  #
+  # api:
+  #   image: makevoid/comma_api_example_api
+  #   build:
+  #     context: ../
+  #     dockerfile: Dockerfile-dev
+  #     args:
+  #       - JWT_TOKEN
+  #   ports:
+  #     - 3000:3000

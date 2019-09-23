@@ -4,12 +4,15 @@ require 'cgi'
 # require 'bundler'
 # Bundler.require :default
 require_relative 'config'
+require_relative 'version'
 
-PATH = File.expand_path "./"
+module CommaAPI
+  PATH = File.expand_path "./"
 
-# -----
-# TODO: refactor
+  # -----
+  # TODO: refactor
 
-require_relative 'api_client_lib'
+  require_relative 'api_client_lib'
 
-include Monkeypatches
+  include Monkeypatches
+end

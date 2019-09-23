@@ -1,0 +1,31 @@
+# FROM ruby:2.6-alpine as builder
+#
+# RUN apk add -U -u --purge alpine-sdk
+#
+# RUN gem i bundler
+#
+# RUN mkdir -p /data/apps/app
+#
+# WORKDIR /data/apps/app
+#
+# ARG JWT_TOKEN
+#
+# ENV JWT_TOKEN $JWT_TOKEN
+#
+# # equivalent to: COPY Gemfile* ./
+# COPY ./example_ui/api/Gemfile* ./
+#
+# # extra
+# COPY ./lib/ /data/
+# COPY ./comma_api_rb.gemspec /data/
+#
+# RUN bundle --without development
+#
+# # equivalent to:  COPY . ./
+# COPY ./example_ui/api/* ./
+#
+# # ENV RACK_ENV production
+#
+# RUN ls /data
+#
+# CMD bundle exec rake

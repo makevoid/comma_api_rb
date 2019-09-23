@@ -14,7 +14,7 @@ FetchStats = -> {
 }
 
 FetchCarState = -> {
-  carState = AthenaAPI.carState()
+  carState = CommaAPI::Athena.carState()
   Log.("carState: #{carState}\n\n")
   carState
 }
@@ -34,6 +34,7 @@ class Api < Roda
   route do |r|
 
     r.root do
+      # puts "Version: #{CommaAPI::VERSION}"
       "OK"
     end
 
