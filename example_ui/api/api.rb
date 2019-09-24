@@ -1,24 +1,10 @@
 # require_relative '../../api_client'
 require_relative 'api_env'
 
-# unused
-
-FetchLocation = -> {
-  deviceLoc = CommaAPI.deviceDefaultLocation()
-  Log.("location: #{deviceLoc}\n\n")
-  deviceLoc
-}
-
-FetchStats = -> {
-  stats = CommaAPI.deviceDefaultStats()
-  Log.("stats: #{stats}\n\n")
-  stats
-}
-
-# we use Athena in this example (device)
+# we use Athena in this example (EON, the device), asking for the `carState` current service state returned as a "log" message 
 
 FetchCarState = -> {
-  carState = CommaAPI::Athena.carState()
+  carState = CommaAPI::Athena.carState() # returns a dictionary/hash
   Log.("carState: #{carState}\n\n")
   carState
 }
@@ -48,7 +34,7 @@ class Api < Roda
 
       stream do |out| # sse via roda "stream" are beautiful, there's no doubt <3
         while true do
-          out << DataTick.()
+          out << DataTick.() # calls the tick that triggers the Athena call via comma.ai's API
           sleep 3
         end
       end
