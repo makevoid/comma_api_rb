@@ -1,6 +1,8 @@
 # require_relative '../../api_client'
 require_relative 'api_env'
 
+# unused
+
 FetchLocation = -> {
   deviceLoc = CommaAPI.deviceDefaultLocation()
   Log.("location: #{deviceLoc}\n\n")
@@ -12,6 +14,8 @@ FetchStats = -> {
   Log.("stats: #{stats}\n\n")
   stats
 }
+
+# we use Athena in this example (device)
 
 FetchCarState = -> {
   carState = CommaAPI::Athena.carState()
