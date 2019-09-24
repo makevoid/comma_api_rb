@@ -1,6 +1,23 @@
 # comma-api-rb
 
-API Client for api.comma.ai
+Unofficial API Client for the Comma API (api.comma.ai)
+
+### Install Gem // Configure Gem Bundle
+
+Install Gem: `gem i comma-api-rb`
+
+Require it (`require "comma-api-rb"`)
+
+---
+
+Use Bundler:
+
+```rb
+gem "comma-api-rb", require: "comma-api-rb"
+```
+
+suggestion: use `Bundler.require :default #, :production, :dev...` to automatically require the comma api gem
+
 
 ### Configuration
 
@@ -47,15 +64,6 @@ state = AthenaAPI.carState.steering.torque()
 See more in the examples contained in the `example` (duh) dir.
 
 enjoy :)
-
-### Install
-
-    bundle
-
-### Run
-
-    bundle exec rake
-
 
 ---
 
