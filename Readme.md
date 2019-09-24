@@ -17,16 +17,21 @@ puts("me:", me) #=> {"email":"makevoid@example.com","id":"12345....","points":27
 Your EON needs to be on for these calls to work
 
 ```rb
-me = AthenaAPI.carState()
+state = AthenaAPI.carState()
 puts("carState:", carState) #=> { ... }
-# access carState as hash/dict
-
+## access carState as hash/dict
+# carstate = state["carState"]
+# wheelSpeedRL = carstate["wheelSpeeds"]["rl"]
+# steeringTorque = carstate["steeringTorque"]
+# steeringAngle = carstate["steeringAngle"]
+# brake = data.carState["brake"]
+# # puts wheelSpeedRL
 
 # soon: access carstate via methods (getters, call without `()`, optional)
-me = AthenaAPI.carState.speed()
-me = AthenaAPI.carState.brake()
-me = AthenaAPI.carState.steering.angle()
-me = AthenaAPI.carState.steering.torque()
+state = AthenaAPI.carState.speed()
+state = AthenaAPI.carState.brake()
+state = AthenaAPI.carState.steering.angle()
+state = AthenaAPI.carState.steering.torque()
 #
 ```
 
