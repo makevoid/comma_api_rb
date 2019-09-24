@@ -35,7 +35,7 @@ class Api < Roda
       stream do |out| # sse via roda "stream" are beautiful, there's no doubt <3
         while true do
           out << DataTick.() # calls the tick that triggers the Athena call via comma.ai's API
-          sleep 3
+          sleep 3 # don't spam comma too much plz
         end
       end
     end
