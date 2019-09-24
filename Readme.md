@@ -2,6 +2,14 @@
 
 API Client for api.comma.ai
 
+### Configuration
+
+Set the COMMA_JWT_TOKEN environment variable with your Comma API JWT token
+
+```
+COMMA_JWT_TOKEN=...
+```
+
 ### Usage
 
 #### Comma API
