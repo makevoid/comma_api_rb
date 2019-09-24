@@ -25,7 +25,6 @@ module FormatStream
     hash.to_json
   }
 
-
 end
 
 Log = -> (msg) {

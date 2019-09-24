@@ -29,7 +29,7 @@ class Api < Roda
     end
 
     r.on "data" do
-      response['Access-Control-Allow-Origin'] = CONFIG[:host]
+      response['Access-Control-Allow-Origin'] = CONFIG[:host] # configure via the CORS_HOST env var
       response['Content-Type'] = 'text/event-stream'
 
       stream do |out| # sse via roda "stream" are beautiful, there's no doubt <3

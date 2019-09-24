@@ -46,28 +46,28 @@ const chartDataset4 = {
 
 const data1 = {
 	data: {
-		labels: 	['t0'],
+		labels: 	['0'],
     datasets: [chartDataset1],
 	},
 }
 
 const data2 = {
 	data: {
-		labels: 	['t0'],
+		labels: 	['0'],
     datasets: [chartDataset2],
 	},
 }
 
 const data3 = {
 	data: {
-		labels: 	['t0'],
+		labels: 	['0'],
     datasets: [chartDataset3],
 	},
 }
 
 const data4 = {
 	data: {
-		labels: 	['t0'],
+		labels: 	['0'],
     datasets: [chartDataset4],
 	},
 }
@@ -104,16 +104,22 @@ let index = 1
 source.addEventListener('message', (event) => {
 
 	const data = JSON.parse(event.data)
-  const wheelSpeed1 = data.carState.wheelSpeeds.rl
-  const steeringTorque = data.carState.steeringTorque
-  const steeringAngle = data.carState.steeringAngle
-  const brake = data.carState.brake
+	const carState = data.carState
+
+	// get carState bits we're interested to graph out
+  const wheelSpeed1 		= carState.wheelSpeeds.rl // this can be improved by taking the avg or by charting in the same chart all 4
+  const steeringTorque 	= carState.steeringTorque
+  const steeringAngle 	= carState.steeringAngle
+  const brake 					= carState.brake
+
   // console.log(data)
   console.log(data.carState)
-  addData(`t${index}`, wheelSpeed1, speedChart)
-  addData(`t${index}`, steeringTorque, steeringTorqueChart)
-  addData(`t${index}`, steeringAngle, steeringAngleChart)
-	addData(`t${index}`, brake, brakeChart)
+	// const msgId = `${index}`
+	const msgId = new Date()
+  addData(msgId, wheelSpeed1, speedChart)
+  addData(msgId, steeringTorque, steeringTorqueChart)
+  addData(msgId, steeringAngle, steeringAngleChart)
+	addData(msgId, brake, brakeChart)
 	index++
 
 }, false)

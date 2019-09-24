@@ -3,4 +3,9 @@ task :run do
   sh "bundle exec rackup -p 3000 -o 0.0.0.0"
 end
 
+desc "Run on port 3001"
+task :run_3k1 do
+  sh "bundle exec rackup -p 3001 -o 0.0.0.0"
+end
+
 task default: :run

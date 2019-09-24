@@ -13,6 +13,9 @@ services:
       context: api
       args:
         - JWT_TOKEN
+    environment:
+      # CORS_HOST: "http://localhost" # meeds to be overridden for your deployment, it is supported also as build-arg
+      # JWT_TOKEN: "..." # soon, atm is a build arg, so I cannot publish the package to a public registry :)
     ports:
       - 3000:3000
 
