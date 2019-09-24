@@ -46,7 +46,7 @@ class Api < Roda
       response['Access-Control-Allow-Origin'] = CONFIG[:host]
       response['Content-Type'] = 'text/event-stream'
 
-      stream do |out|
+      stream do |out| # sse via roda "stream" are beautiful, there's no doubt <3
         while true do
           out << DataTick.()
           sleep 3
