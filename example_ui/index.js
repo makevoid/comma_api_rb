@@ -17,28 +17,28 @@ const merge = (obj1, obj2) =>
 	Object.assign(obj1, obj2)
 
 const chartDataset1 = {
-	label: 't0-label',
+	label: 'speed',
 	data: [ 1 ],
 	backgroundColor: 	[ 'rgba(255, 99, 132, 0.2)' ],
   borderColor: 			[ 'rgba(255, 99, 132, 1)' ],
 }
 
 const chartDataset2 = {
-	label: 't1-label',
+	label: 'steeringTorque',
 	data: [ 1 ],
 	backgroundColor: 	[ 'rgba(54, 162, 235, 0.2)' ],
 	borderColor: 			[ 'rgba(54, 162, 235, 1)' ],
 }
 
 const chartDataset3 = {
-	label: 't2-label',
+	label: 'steeringAngle',
 	data: [ 1 ],
 	backgroundColor: 	[ 'rgba(153, 102, 255, 0.2)' ],
 	borderColor: 			[ 'rgba(153, 102, 255, 1)' ],
 }
 
 const chartDataset4 = {
-	label: 't3-label',
+	label: 'brake',
 	data: [ 1 ],
 	backgroundColor: 	[ 'rgba(75, 192, 192, 0.2)' ],
 	borderColor: 			[ 'rgba(75, 192, 192, 1)' ],
