@@ -101,25 +101,56 @@ const source = new EventSource(`http://${host}/data`)
 
 let index = 1
 
-source.addEventListener('message', (event) => {
+const clock = () => {
+	const now = new Date().toUTCString()
+	return now
+}
 
-	const data = JSON.parse(event.data)
+const selectCarState = (data) => { // select only the elements we care about atm from carstate
 	const carState = data.carState
 
-	// get carState bits we're interested to graph out
+	// get carState bits we're interested to graph out *note1*
   const wheelSpeed1 		= carState.wheelSpeeds.rl // this can be improved by taking the avg or by charting in the same chart all 4
   const steeringTorque 	= carState.steeringTorque
   const steeringAngle 	= carState.steeringAngle
   const brake 					= carState.brake
 
+	return { wheelSpeed1, steeringTorque, steeringAngle, brake }
+}
+
+const renderChartTicks = (event) => {
+
+	const data = JSON.parse(event.data)
+	const carState = selectCarState(data)
+	const { wheelSpeed1, steeringTorque, steeringAngle, brake } = selectCarState(data)
+
   // console.log(data)
   console.log(data.carState)
 	// const msgId = `${index}`
-	const msgId = new Date()
+
+	const msgId = new Date().getSeconds()
+
   addData(msgId, wheelSpeed1, speedChart)
   addData(msgId, steeringTorque, steeringTorqueChart)
   addData(msgId, steeringAngle, steeringAngleChart)
 	addData(msgId, brake, brakeChart)
-	index++
 
-}, false)
+	index++
+}
+
+source.addEventListener('message', renderChartTicks, false)
+
+const updateClock = () => {
+	const clockElem = document.querySelector(".clock")
+	clockElem.innerHTML = clock()
+}
+
+// sophisticated clock lol
+setInterval(updateClock, 200)
+
+
+
+// notes:
+//
+// 	// *note1* - feel free to edit with wathever elements you prefer in `selectCarState`
+		// my suggestion is to keep consistency in the js names, css classes, etc so you can call `addData` with the correct args, edit the js correctly and have the right class for the <canvas /> element

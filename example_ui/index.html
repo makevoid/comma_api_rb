@@ -27,12 +27,32 @@
       .title { color: #DDD; }
       */
 
+      .clock-container, .title > span {
+        font-size: 0.4em;
+        float: right;
+        font-weight: normal;
+        line-height: 40px;
+      }
+      .clock-icon {
+        font-size: 1.6em;
+        position: relative;
+        top: 2px;
+        margin-right: 1px;
+      }
+
     </style>
   </head>
   <body>
     <section class="section">
       <div class="container is-fluid">
-        <p class="title">Athena OP Live Data</p>
+        <p class="title">
+          Athena OP Live Data
+          <span class="clock-container">
+            <span class="clock-icon">⌚</span>
+            <span class="clock"></span>
+          </span>
+
+        </p>
         <!-- I'm making this to do a chart visualization of the available data -->
 
         <div class="chart-container">
