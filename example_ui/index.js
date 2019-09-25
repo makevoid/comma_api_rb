@@ -96,10 +96,10 @@ const steeringAngleChartElem  = document.querySelector(".steeringAngleChart")
 
 // chart-js charts
 
-const speedChart          = new Chart( speedChartElem, merge(chartOptions, data1) )
-const brakeChart          = new Chart( brakeChartElem, merge(chartOptions4, data4) )
+const speedChart          = new Chart( speedChartElem,          merge(chartOptions, data1)  )
+const brakeChart          = new Chart( brakeChartElem,          merge(chartOptions4, data4) )
 const steeringTorqueChart = new Chart( steeringTorqueChartElem, merge(chartOptions2, data2) )
-const steeringAngleChart  = new Chart( steeringAngleChartElem, merge(chartOptions3, data3) )
+const steeringAngleChart  = new Chart( steeringAngleChartElem,  merge(chartOptions3, data3) )
 
 const source = new EventSource(`http://${host}/data`)
 
@@ -114,10 +114,10 @@ const selectCarState = (data) => { // select only the elements we care about atm
   const carState = data.carState
 
   // get carState bits we're interested to graph out *note1*
-  const wheelSpeed1 		= carState.wheelSpeeds && carState.wheelSpeeds.rl // this can be improved by taking the avg or by charting in the same chart all 4
-  const steeringTorque 	= carState.steeringTorque
-  const steeringAngle 	= carState.steeringAngle
-  const brake 					= carState.brake
+  const wheelSpeed1     = carState.wheelSpeeds && carState.wheelSpeeds.rl // this can be improved by taking the avg or by charting in the same chart all 4
+  const steeringTorque  = carState.steeringTorque
+  const steeringAngle   = carState.steeringAngle
+  const brake           = carState.brake
 
   return { wheelSpeed1, steeringTorque, steeringAngle, brake }
 }
