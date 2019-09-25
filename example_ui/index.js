@@ -48,28 +48,28 @@ const chartDataset4 = {
 
 const data1 = {
   data: {
-  labels: 	['0'],
+  labels: ['0'],
     datasets: [chartDataset1],
   },
 }
 
 const data2 = {
   data: {
-  labels: 	['0'],
+  labels: ['0'],
     datasets: [chartDataset2],
   },
 }
 
 const data3 = {
   data: {
-  labels: 	['0'],
+  labels: ['0'],
     datasets: [chartDataset3],
   },
 }
 
 const data4 = {
   data: {
-  labels: 	['0'],
+  labels: ['0'],
     datasets: [chartDataset4],
   },
 }
