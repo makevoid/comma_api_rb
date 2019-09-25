@@ -69,6 +69,7 @@ module CommaAPI
         data = rpc_msg(m: m, service: service)
         begin
           resp = post_request url: url, data: data
+          # puts "response: #{resp}" # debug - todo remove
         rescue
           return RPCError.new "JSON Parse Error"
         end

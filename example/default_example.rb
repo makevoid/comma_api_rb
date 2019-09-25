@@ -1,7 +1,9 @@
-require_relative '../api_client'
+require_relative '../lib/comma-api-rb'
 
-me = CommaAPI.me()
+me = CommaAPI::API.me()
 puts "me: #{me}\n\n"
+
+exit
 
 # ---
 
