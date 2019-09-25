@@ -139,10 +139,10 @@ const renderChartTicks = (event) => {
 
   const msgId = new Date().getSeconds()
 
-  addData(msgId, wheelSpeed1, speedChart)
+  addData(msgId, wheelSpeed1,    speedChart)
   addData(msgId, steeringTorque, steeringTorqueChart)
-  addData(msgId, steeringAngle, steeringAngleChart)
-  addData(msgId, brake, brakeChart)
+  addData(msgId, steeringAngle,  steeringAngleChart)
+  addData(msgId, brake,          brakeChart)
 
   index++
 }
