@@ -20,28 +20,28 @@ const merge = (obj1, obj2) =>
 
 const chartDataset1 = {
   label: 'speed',
-  data: [ 1 ],
+  data: [ 0 ],
   backgroundColor:  [ 'rgba(255, 99, 132, 0.2)' ],
   borderColor:      [ 'rgba(255, 99, 132, 1)' ],
 }
 
 const chartDataset2 = {
   label: 'steeringTorque',
-  data: [ 1 ],
+  data: [ 0 ],
   backgroundColor:  [ 'rgba(54, 162, 235, 0.2)' ],
   borderColor:      [ 'rgba(54, 162, 235, 1)' ],
 }
 
 const chartDataset3 = {
   label: 'steeringAngle',
-  data: [ 1 ],
+  data: [ 0 ],
   backgroundColor:  [ 'rgba(153, 102, 255, 0.2)' ],
   borderColor:      [ 'rgba(153, 102, 255, 1)' ],
 }
 
 const chartDataset4 = {
   label: 'brake',
-  data: [ 1 ],
+  data: [ 0 ],
   backgroundColor:  [ 'rgba(75, 192, 192, 0.2)' ],
   borderColor:      [ 'rgba(75, 192, 192, 1)' ],
 }
@@ -121,6 +121,8 @@ const selectCarState = (data) => { // select only the elements we care about atm
 
   return { wheelSpeed1, steeringTorque, steeringAngle, brake }
 }
+
+// a clock is useful to know at which second we are (charts print the current second they're at - X axis)
 
 const updateClock = () => {
   const clockElem = document.querySelector(".clock")
