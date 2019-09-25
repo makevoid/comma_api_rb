@@ -155,5 +155,7 @@ setInterval(updateClock, 200)
 
 // notes:
 //
-// 	// *note1* - feel free to edit with wathever elements you prefer in `selectCarState`
+// // *note1* - feel free to edit with wathever elements you prefer in `selectCarState`
 // my suggestion is to keep consistency in the js names, css classes, etc so you can call `addData` with the correct args, edit the js correctly and have the right class for the <canvas /> element
+//
+// todo: remove these notes because really?
