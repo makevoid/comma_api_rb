@@ -85,17 +85,17 @@ const addData = (label, data, chart) => {
   chart.update()
 }
 
-// chart
-
 const speedChartElem = document.querySelector(".speedChart")
-const steeringTorqueChartElem = document.querySelector(".steeringTorqueChart")
-const steeringAngleChartElem = document.querySelector(".steeringAngleChart")
 const brakeChartElem = document.querySelector(".brakeChart")
+const steeringTorqueChartElem = document.querySelector(".steeringTorqueChart")
+const steeringAngleChartElem  = document.querySelector(".steeringAngleChart")
 
-const speedChart = new Chart( speedChartElem, merge(chartOptions, data1) )
+// chart-js charts
+
+const speedChart          = new Chart( speedChartElem, merge(chartOptions, data1) )
+const brakeChart          = new Chart( brakeChartElem, merge(chartOptions4, data4) )
 const steeringTorqueChart = new Chart( steeringTorqueChartElem, merge(chartOptions2, data2) )
-const steeringAngleChart = new Chart( steeringAngleChartElem, merge(chartOptions3, data3) )
-const brakeChart = new Chart( brakeChartElem, merge(chartOptions4, data4) )
+const steeringAngleChart  = new Chart( steeringAngleChartElem, merge(chartOptions3, data3) )
 
 const source = new EventSource(`http://${host}/data`)
 
