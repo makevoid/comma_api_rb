@@ -16,6 +16,8 @@ const chartOptions4 = Object.assign({}, chartOptions)
 const merge = (obj1, obj2) =>
   Object.assign(obj1, obj2)
 
+// chart configs - sorry, this is long - todo: extract to a separate file
+
 const chartDataset1 = {
   label: 'speed',
   data: [ 1 ],
@@ -72,6 +74,8 @@ const data4 = {
   },
 }
 
+// config/setup ends
+
 // chart helpers
 
 const addData = (label, data, chart) => {
@@ -118,6 +122,13 @@ const selectCarState = (data) => { // select only the elements we care about atm
   return { wheelSpeed1, steeringTorque, steeringAngle, brake }
 }
 
+const updateClock = () => {
+  const clockElem = document.querySelector(".clock")
+  clockElem.innerHTML = clock()
+}
+
+// renderChartTicks - the most important method around here
+
 const renderChartTicks = (event) => {
 
   const data = JSON.parse(event.data)
@@ -138,17 +149,11 @@ const renderChartTicks = (event) => {
   index++
 }
 
+// processes new message
 source.addEventListener('message', renderChartTicks, false)
-
-const updateClock = () => {
-  const clockElem = document.querySelector(".clock")
-  clockElem.innerHTML = clock()
-}
 
 // sophisticated clock lol
 setInterval(updateClock, 200)
-
-
 
 // notes:
 //
