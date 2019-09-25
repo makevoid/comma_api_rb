@@ -127,17 +127,15 @@ const updateClock = () => {
   clockElem.innerHTML = clock()
 }
 
-// renderChartTicks - the most important method around here
+// renderChartTicks() - the most important method around here, calls `addData()` (add a point to a chart), renderChartTicks() runs for each "tick" (SSE message received)
 
 const renderChartTicks = (event) => {
 
   const data = JSON.parse(event.data)
   const carState = selectCarState(data)
   const { wheelSpeed1, steeringTorque, steeringAngle, brake } = selectCarState(data)
-
-  // console.log(data)
-  console.log(data.carState)
-  // const msgId = `${index}`
+  // uncomment to see all available data in carstate:
+  // console.log("carstate:", ata.carState)
 
   const msgId = new Date().getSeconds()
 
