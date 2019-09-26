@@ -7,7 +7,7 @@ exit
 
 # ---
 
-# device = CommaAPI.deviceDefault()
+# device = CommaAPI::API.deviceDefault()
 # puts "device: #{device}\n\n"
 
 # lat - lng - speed - gps accuracy - gps timestamp - gps bearing
@@ -15,115 +15,51 @@ exit
 
 # ---
 
-deviceLoc = CommaAPI.deviceDefaultLocation()
+deviceLoc = CommaAPI::API.deviceDefaultLocation()
 puts "device location: #{deviceLoc}\n\n"
 # # lat lng time speed bearing
 # # note - takes long ? because device is offline?
 
 
-puts "Example loop and update via SSE" # - https://github.com/appliedblockchain/roda-react-sse
-
-# Example where I use roda and SSE events ( needs full roda app - code from https://github.com/appliedblockchain/roda-react-sse )
-
-module FormatStream
-
-  SSE_IDS = {}
-
-  Format = -> (stream, hash) {
-    out = ""
-    id = SSE_IDS[:stream] || 0 # we need an auto-increment id for the sse to work
-    # this is the (simple) output format - id: ID \n data: [JSON] \n\n
-    out << "id: #{id}\n"
-    out << "data: #{JSONDump.(hash)} \n\n" # json data
-    SSE_IDS[:stream] = id
-    out
-  }
-
-  # private
-
-  JSONDump = -> (hash) {
-    hash.to_json
-  }
-
-end
-
-Log = -> (msg) {
-  puts msg
-}
-
-FetchLocation = -> {
-  deviceLoc = CommaAPI.deviceDefaultLocation()
-  Log.("new device location: #{deviceLoc}\n\n")
-  deviceLoc
-}
-
-r.on "updates" do
-  response['Access-Control-Allow-Origin'] = CONFIG[:host]
-  response['Content-Type'] = 'text/event-stream'
-  stream do |out|
-    while true do
-      data = FetchLocation.()
-      out << FormatStream::Format.(:update_location, data)
-      sleep 3
-    end
-  end
-end
-
 # --------------------
 
-# JS
-
-JS = `
-const source = new EventSource('/subscribe')
-
-const logData = function(data) {
-  log.innerText += '\n' + data
-}
-
-source.addEventListener('message', (event) => {
-  logData(event.data)
-}, false)
-`
-
-
-
-# --------------------
-
-# stats = CommaAPI.deviceDefaultStats()
+# stats = CommaAPI::API.deviceDefaultStats()
 # puts "device stats: #{stats}\n\n"
 # distance, minutes, routes
 # total stats: miles driven, minutes, number of sessions
 
+# ---
+
+# Athena Examples:
+
 puts "\n\nAthena\n---\n"
-#
-# thermal = Athena.thermal()
+# thermal = CommaAPI::Athena.thermal()
 # puts "thermal: #{thermal}\n\n"
 #
-# health = Athena.health()
+# health = CommaAPI::Athena.health()
 # puts "health: #{health}\n\n"
 
-androidLog = Athena.logMessage()
+androidLog = CommaAPI::Athena.logMessage()
 puts "androidLog: #{androidLog}\n\n"
 
-# gpsLocation = Athena.gpsLocation()
+# gpsLocation = CommaAPI::Athena.gpsLocation()
 # puts "gpsLocation: #{gpsLocation}\n\n"
 
 # ---
 
-
-# devices = CommaAPI.devices()
+# devices = CommaAPI::API.devices()
 # puts "devices: #{devices}\n\n"
 
-# segments = CommaAPI.segments()
+# segments = CommaAPI::API.segments()
 # puts "segments: #{segments}\n\n"
 
-# others to try
+# others to try:
 #
-# stats = CommaAPI.deviceStats()
+# stats = CommaAPI::API.deviceStats()
 # puts "stats: #{stats}\n\n"
 #
-# device = CommaAPI.device(id: "12345")
+# device = CommaAPI::API.device(id: "12345")
 # puts "device: #{devices}\n"
 #
-# device = CommaAPI.deviceDefault()
+# device = CommaAPI::API.deviceDefault()
 # puts "device: #{device}\n\n"

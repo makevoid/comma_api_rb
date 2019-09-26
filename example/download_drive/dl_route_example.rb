@@ -1,8 +1,4 @@
-# usage
-
-# as at the moment the docker version is not complete, use this command
-
-# ruby dl_route.rb ROUTE_ID=<route_id>
+# ruby dl_route.rb <route_id>
 
 require_relative '../api_client'
 
@@ -22,8 +18,6 @@ routeFiles.fetch("cameras").each_with_index do |camera, idx|
 
   data = resp.body
   idx = "%02d" % idx
-
-  # this will downlaod the `.hevc` videos of a drive
   File.open("video-#{idx}.hevc", "wb") do |file|
     file.write data
   end

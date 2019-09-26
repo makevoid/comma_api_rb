@@ -1,11 +1,30 @@
 // config
-const host = "localhost:3000"
+
+// at the moment the only configuration is the API host, the API host has the token so the calls don"t require it (but then people need to run docker, and build and run containers atm)
+
+// DEFAULT host - use this when running it locally
+//
+// const host = "localhost:3000"
+
+
+// configure
+
+// docker-compose / docker-swarm host:
+const host = "api:3000"
+
+// const hostLaptop1  = "mkvmbp3.local:3000"
+// const hostLaptop2  = "mkvmsi.local:3000"
+// const hostDesktop1 = "mkvd.eu.ngrok.io:3000" # https available
+// const host = hostLaptop1
+
+
+// boilerplate code - todo: extract
 
 const lineChartOptions = {
   //...
 }
 const chartOptions = {
-  type: 'line',
+  type: "line",
   options: lineChartOptions,
 }
 
@@ -13,64 +32,91 @@ const chartOptions2 = Object.assign({}, chartOptions)
 const chartOptions3 = Object.assign({}, chartOptions)
 const chartOptions4 = Object.assign({}, chartOptions)
 
-const merge = (obj1, obj2) =>
+// merge helpers - utils
+
+const merge2 = (obj1, obj2) => {
   Object.assign(obj1, obj2)
+}
+
+const merge = (obj1, obj2, obj3) => {
+  if (obj3) {
+    return merge2(merge2(obj1, obj2), obj3)
+  } else {
+    return merge2(obj1, obj2)
+  }
+}
 
 // chart configs - sorry, this is long - todo: extract to a separate file
 
-const chartDataset1 = {
-  label: 'speed',
-  data: [ 0 ],
-  backgroundColor:  [ 'rgba(255, 99, 132, 0.2)' ],
-  borderColor:      [ 'rgba(255, 99, 132, 1)' ],
+const colors = {
+  red: {
+    backgroundColor: 	["rgba(255, 99, 132, 0.2)"],
+    borderColor: 			["rgba(255, 99, 132, 1)"],
+  },
+  blue: {
+    backgroundColor: 	["rgba(54, 162, 235, 0.2)"],
+    borderColor: 			["rgba(54, 162, 235, 1)"],
+  },
+  purple: {
+    backgroundColor: 	["rgba(153, 102, 255, 0.2)"],
+    borderColor: 			["rgba(153, 102, 255, 1)"],
+  },
+  green: {
+    backgroundColor: 	["rgba(75, 192, 192, 0.2)"],
+    borderColor: 			["rgba(75, 192, 192, 1)"],
+  }
 }
 
-const chartDataset2 = {
-  label: 'steeringTorque',
-  data: [ 0 ],
-  backgroundColor:  [ 'rgba(54, 162, 235, 0.2)' ],
-  borderColor:      [ 'rgba(54, 162, 235, 1)' ],
-}
-
-const chartDataset3 = {
-  label: 'steeringAngle',
-  data: [ 0 ],
-  backgroundColor:  [ 'rgba(153, 102, 255, 0.2)' ],
-  borderColor:      [ 'rgba(153, 102, 255, 1)' ],
-}
-
-const chartDataset4 = {
-  label: 'brake',
-  data: [ 0 ],
-  backgroundColor:  [ 'rgba(75, 192, 192, 0.2)' ],
-  borderColor:      [ 'rgba(75, 192, 192, 1)' ],
-}
+// initial form of the chart dataset hash
+//
+const chartDataset = _ => (
+  merge(
+    { data: [0], ...colors.red },
+    colors.red,
+  )
+)
 
 const data1 = {
   data: {
-  labels: ['0'],
-    datasets: [chartDataset1],
+  labels: ["0"],
+    datasets: merge(
+      { label: "speed" },
+      chartDataset,
+      colors.red,
+    ),
   },
 }
 
 const data2 = {
   data: {
-  labels: ['0'],
-    datasets: [chartDataset2],
+  labels: ["0"],
+    datasets: merge(
+      { label: "speed" },
+      chartDataset,
+      colors.blue,
+    ),
   },
 }
 
 const data3 = {
   data: {
-  labels: ['0'],
-    datasets: [chartDataset3],
+  labels: ["0"],
+    datasets: merge(
+      { label: "speed" },
+      chartDataset,
+      colors.purple,
+    ),
   },
 }
 
 const data4 = {
   data: {
-  labels: ['0'],
-    datasets: [chartDataset4],
+  labels: ["0"],
+    datasets: merge(
+      { label: "speed" },
+      chartDataset,
+      colors.green,
+    ),
   },
 }
 
@@ -150,7 +196,7 @@ const renderChartTicks = (event) => {
 }
 
 // processes new message
-source.addEventListener('message', renderChartTicks, false)
+source.addEventListener("message", renderChartTicks, false)
 
 // sophisticated clock lol
 setInterval(updateClock, 200)
