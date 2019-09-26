@@ -1,6 +1,6 @@
 # ruby dl_route.rb <route_id>
 
-require_relative '../api_client'
+require_relative '../lib/comma-api-rb'
 
 me = CommaAPI.me()
 puts "me: #{me}\n\n"

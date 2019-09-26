@@ -1,6 +1,6 @@
 # ruby dl_route.rb <route_id>
 
-require_relative '../api_client'
+require_relative '../../lib/comma-api-rb'
 
 route_id = ENV["ROUTE_ID"] || "........" # put here your route id
 route_id = CGI.escape route_id
