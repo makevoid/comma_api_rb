@@ -12,6 +12,6 @@ Bundler.require :default
 
 CONFIG = {
   # host: "http://athena-dashboard.mkv.run". # remote
-  host: ENV["CORS_HOST"] || "http://localhost", # docker
+  host: ENV["CORS_HOST"] || "http://mkvmbp3.local" || "http://localhost", # docker
   # host: "http://localhost:3001". # local
 }
