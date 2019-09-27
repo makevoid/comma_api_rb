@@ -1,3 +1,4 @@
 example/priv_example*.rb
+example/private_example*.rb
 *.hevc
 *.gem
