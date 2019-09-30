@@ -47,18 +47,6 @@ RUN gem i bundler
 
 RUN mkdir -p /app/route
 
-# uncomment to enable CORS_HOST build-arg:
-# ARG CORS_HOST
-# ENV CORS_HOST $CORS_HOST
-
-# TODO: remove jwt token
-# remove, insecure and less direct from a tier0 user (tier1 users are the ones that build the containers themselves basically :D)
-# (this is why the docker image makevoid/comma_api_example_api is currently private, the jwt token is built/embedded into it - we should remove it for security, so that anyone can just pull the docker imgs, he/she/et.al... doesn't need to build it but atm having it in the image is convenient. # TODO: remove this message, this is way too long for a dockerfile
-ARG JWT_TOKEN
-ENV JWT_TOKEN $JWT_TOKEN
-
-# we recommend SSDs on the box/VM you use to build this container, if your app becomes big this can take some time, the copy atm is not optimized if the repo is big, please make sure you add everything to your `.dockerignore` for optimizing this step, otherwise docker make no sense if you have a slow build
-
 COPY --from=builder /app /app
 
 WORKDIR /app

@@ -6,8 +6,6 @@ services:
     image: "makevoid/comma_ai_download_drive"
     build:
       context: .
-      args:
-        - JWT_TOKEN
     environment:
       ROUTE_ID: "PUT_YOUR_ROUTE_ID_HERE"
 
