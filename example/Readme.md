@@ -34,4 +34,4 @@ f5fd7b69a6836f10|2020-01-01--01-20-32
 
 6. congrats! you have your route ID
 
-now you can use it for the example scripts as `ruby example/example1.rb ROUTE_ID=...`
+now you can use it for the example scripts as `ruby example/example1.rb ROUTE_ID="..."`

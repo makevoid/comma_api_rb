@@ -4,3 +4,15 @@ version: "3"
 services:
   download_drive:
     image: "makevoid/comma_ai_download_drive"
+    build:
+      context: .
+      args:
+        - JWT_TOKEN
+    environment:
+      ROUTE_ID: "PUT_YOUR_ROUTE_ID_HERE"
+
+# docker-compose up
+
+# docker-compose up --build
+
+# docker run -e ROUTE_ID="xxxxxxxx" makevoid/comma_ai_download_drive

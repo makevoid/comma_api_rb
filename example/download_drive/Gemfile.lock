@@ -1,0 +1,15 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    comma-api-rb (0.3.2)
+    rake (13.0.0)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  comma-api-rb
+  rake
+
+BUNDLED WITH
+   2.0.2

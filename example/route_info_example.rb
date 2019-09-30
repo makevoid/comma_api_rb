@@ -2,7 +2,7 @@ require_relative '../lib/comma-api-rb'
 
 # example usage:
 #
-# ruby route_info_example.rb ROUTE_ID=... JWT_TOKEN=...
+# ruby route_info_example.rb ROUTE_ID="..." JWT_TOKEN=...
 
 
 # read readme, get your drive's route id pass it as an env variable

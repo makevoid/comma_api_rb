@@ -4,7 +4,7 @@ require_relative '../lib/comma-api-rb'
 
 # as at the moment the docker version is not complete, use this command
 
-# ruby dl_route.rb ROUTE_ID=<route_id>
+# ruby dl_route.rb ROUTE_ID="<route_id>"
 
 route_id = ENV["ROUTE_ID"] || "........" # put here your route id
 route_id = CGI.escape route_id
