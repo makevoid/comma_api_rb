@@ -7,27 +7,6 @@ exit
 
 # ---
 
-# device = CommaAPI::API.deviceDefault()
-# puts "device: #{device}\n\n"
-
-# lat - lng - speed - gps accuracy - gps timestamp - gps bearing
-# last_gps_lat - last_gps_lng - last_gps_speed - last_gps_accuracy - last_gps_time - last_gps_bearing
-
-# ---
-
-deviceLoc = CommaAPI::API.deviceDefaultLocation()
-puts "device location: #{deviceLoc}\n\n"
-# # lat lng time speed bearing
-# # note - takes long ? because device is offline?
-
-
-# --------------------
-
-# stats = CommaAPI::API.deviceDefaultStats()
-# puts "device stats: #{stats}\n\n"
-# distance, minutes, routes
-# total stats: miles driven, minutes, number of sessions
-
 # ---
 
 # Athena Examples:

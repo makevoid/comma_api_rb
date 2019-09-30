@@ -57,6 +57,24 @@ module CommaAPI
         get "/v1/devices/#{id}/stats#{args}"
       end
 
+      # device permissions
+
+      # TODO: finish device permissions
+
+      def deviceGrantPermissions(id:, email:)
+        args = {
+          email: email
+        }
+        post "/v1/devices/#{id}/add_user", args
+      end
+
+      def deviceRevokePermissions(id:, email:)
+        args = {
+          email: email
+        }
+        post "/v1/devices/#{id}/del_user", args
+      end
+
       # routes
 
       def route(route_name:)
@@ -83,6 +101,14 @@ module CommaAPI
         return device404Error unless DONGLE_ID_DEFAULT
         deviceSegments id: DONGLE_ID_DEFAULT
       end
+
+      # leaderboard
+
+      def leaderboard
+        get "/v2/leaderboard/"
+      end
+
+      # args
 
       def args
         defaultArgs # alias (alias :args :defaultArgs)
