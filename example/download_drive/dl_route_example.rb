@@ -69,3 +69,5 @@ if LOGS # pass LOGS=1 to download all logs
   end
 
 end
+
+puts "download complete!"
