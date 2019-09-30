@@ -8,17 +8,25 @@ this tiny script downloads OP drives from "the cloud" to your box
 
 #### call this script via docker (recommended):
 
-    docker run -e ROUTE_ID="xxxxxxxx" makevoid/comma_ai_download_drive
+    docker run -e ROUTE_ID="xxxxx" -e JWT_TOKEN="xxxxx" makevoid/comma_ai_download_drive
 
 pass LOGS=1 to download all the logs:
 
-    docker run -e ROUTE_ID="xxxxxxxx" -e LOGS=1 makevoid/comma_ai_download_drive
+    docker run -e ROUTE_ID="xxxxx" -e JWT_TOKEN="xxxxx" -e LOGS=1 makevoid/comma_ai_download_drive
 
 
 #### call via plain ruby:
 
     ruby dl_route_example.rb ROUTE_ID="xxxxxxxx"
 
+
+---
+
+#### Get your JWT TOKEN
+
+https://jwt.comma.ai/
+
+log in with your google account, your Comma JWT token will get shown on the page, copy it and paste it in the docker script, it will be used to download the route files
 
 ---
 

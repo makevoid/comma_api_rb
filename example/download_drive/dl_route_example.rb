@@ -36,7 +36,7 @@ def download(url, idx)
 
   uri  = URI url
   req  = Net::HTTP::Get.new uri.request_uri
-  req["Authorization"] = "JWT #{::JWT_TOKEN}"
+  # req["Authorization"] = "JWT #{::JWT_TOKEN}"
   resp = CommaAPI::API.http(uri: uri).request req
   return RPCError404.new if resp.code == "404"
 

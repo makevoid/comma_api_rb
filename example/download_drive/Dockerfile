@@ -53,6 +53,7 @@ WORKDIR /app
 
 RUN bundle install --deployment --without development
 
-# user rake to call `bundle exec rackup -p 3000` # port 3000 - note, if you edit this then change it also in API
+# ENV ROUTE_ID
+# ENV JWT_TOKEN
 
 CMD bundle exec rake

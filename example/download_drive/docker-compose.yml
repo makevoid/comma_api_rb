@@ -7,7 +7,8 @@ services:
     build:
       context: .
     environment:
-      ROUTE_ID: "PUT_YOUR_ROUTE_ID_HERE"
+      ROUTE_ID: "PASTE_YOUR_ROUTE_ID_HERE"
+      JWT_TOKEN: "PASTE_YOUR_JWT_TOKEN_HERE"
 
 # docker-compose up
 

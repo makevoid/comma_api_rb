@@ -1,6 +1,6 @@
 desc "Run"
 task :run do
-  sh "ruby dl_route_example.rb"
+  sh "bundle exec ruby dl_route_example.rb"
 end
 
 task default: :run
