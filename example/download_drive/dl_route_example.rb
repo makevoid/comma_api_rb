@@ -5,16 +5,16 @@
 #
 # call this script via docker (recommended):
 #
-#   docker run -e ROUTE_ID="xxxxxxxx" makevoid/comma_ai_download_drive
+#   docker run -e ROUTE_ID="abcdef1234567890|2020-01-01--00-00-00" -e JWT_TOKEN="xxxxxxxxx" -v $(pwd):/app/route makevoid/comma_ai_download_drive
 #
 # pass LOGS=1 to download all the logs:
 #
-#   docker run -e ROUTE_ID="xxxxxxxx" -e LOGS=1 makevoid/comma_ai_download_drive
+#   docker run -e ROUTE_ID="abcdef1234567890|2020-01-01--00-00-00" -e LOGS=1 -e JWT_TOKEN="xxxxxxxxx" -v $(pwd):/app/route makevoid/comma_ai_download_drive
 #
 #
 # call via plain ruby:
 #
-#   ruby dl_route_example.rb ROUTE_ID="xxxxxxxx"
+#   ruby dl_route_example.rb ROUTE_ID="xxxxx" JWT_TOKEN="xxxxx"
 #
 #
 # note: you have to configure a working ruby environment to run this
