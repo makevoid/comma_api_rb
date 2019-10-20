@@ -228,6 +228,8 @@ let speedChart
 let brakeChart
 let steerTorqueChart
 let steerAngleChart
+let batteryChartElem
+let fanRPMChartElem
 
 // main function
 const renderChart = () => {
@@ -235,21 +237,21 @@ const renderChart = () => {
   const brakeChartElem       = document.querySelector(".brakeChart")
   const steerTorqueChartElem = document.querySelector(".steeringTorqueChart")
   const steerAngleChartElem  = document.querySelector(".steeringAngleChart")
+  const batteryChartElem     = document.querySelector(".batteryChart")
+  const fanRPMChartElem      = document.querySelector(".fanRPMChart")
 
-  console.log(merge(chartOptions3, data3))
-
-  speedChart        = new Chart( speedChartElem,          merge(chartOptions, data1)  )
-  brakeChart        = new Chart( brakeChartElem,          merge(chartOptions4, data4) )
-  steerTorqueChart  = new Chart( steerTorqueChartElem, merge(chartOptions2, data2) )
-  steerAngleChart   = new Chart( steerAngleChartElem,  merge(chartOptions3, data3) )
-  Chart   = new Chart( steerAngleChartElem,  merge(chartOptions5, data5) )
-  steerAngleChart   = new Chart( steerAngleChartElem,  merge(chartOptions6, data6) )
+  speedChart        = new Chart( speedChartElem,        merge(chartOptions, data1)  )
+  brakeChart        = new Chart( brakeChartElem,        merge(chartOptions4, data4) )
+  steerTorqueChart  = new Chart( steerTorqueChartElem,  merge(chartOptions2, data2) )
+  steerAngleChart   = new Chart( steerAngleChartElem,   merge(chartOptions3, data3) )
+  batteryChart      = new Chart( batteryChartElem,      merge(chartOptions5, data5) )
+  fanRPMChart       = new Chart( fanRPMChartElem,       merge(chartOptions6, data6) )
 
   const source    = new EventSource(`http://${host}/data`) // car ("carState")
   const sourceEon = new EventSource(`http://${host}/data/eon`)
 
   // processes new message
-  source.addEventListener("message", renderChartTicks, false)
+  source.addEventListener("message", renderChartTicks,    false)
   source.addEventListener("message", renderChartTicksEon, false)
 
   // sophisticated clock lol
