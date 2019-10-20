@@ -6,11 +6,12 @@
 //
 // const host = "localhost:3000"
 
-
 // configure
 
 // docker-compose / docker-swarm host:
-const host = "api:3000"
+// const host = "api:3000"
+
+const host = "mkvd.local:3000"
 
 // const hostLaptop1  = "mkvmbp3.local:3000"
 // const hostLaptop2  = "mkvmsi.local:3000"
@@ -32,11 +33,14 @@ const chartOptions2 = Object.assign({}, chartOptions)
 const chartOptions3 = Object.assign({}, chartOptions)
 const chartOptions4 = Object.assign({}, chartOptions)
 
+const chartOptions5 = Object.assign({}, chartOptions)
+const chartOptions6 = Object.assign({}, chartOptions)
+
+
 // merge helpers - utils
 
-const merge2 = (obj1, obj2) => {
+const merge2 = (obj1, obj2) =>
   Object.assign(obj1, obj2)
-}
 
 const merge = (obj1, obj2, obj3) => {
   if (obj3) {
@@ -50,73 +54,101 @@ const merge = (obj1, obj2, obj3) => {
 
 const colors = {
   red: {
-    backgroundColor: 	["rgba(255, 99, 132, 0.2)"],
-    borderColor: 			["rgba(255, 99, 132, 1)"],
+    backgroundColor: 	"rgba(255, 99, 132, 0.2)",
+    borderColor: 			"rgba(255, 99, 132, 1)",
   },
   blue: {
-    backgroundColor: 	["rgba(54, 162, 235, 0.2)"],
-    borderColor: 			["rgba(54, 162, 235, 1)"],
+    backgroundColor: 	"rgba(54, 162, 235, 0.2)",
+    borderColor: 			"rgba(54, 162, 235, 1)",
   },
   purple: {
-    backgroundColor: 	["rgba(153, 102, 255, 0.2)"],
-    borderColor: 			["rgba(153, 102, 255, 1)"],
+    backgroundColor: 	"rgba(153, 102, 255, 0.2)",
+    borderColor: 			"rgba(153, 102, 255, 1)",
   },
   green: {
-    backgroundColor: 	["rgba(75, 192, 192, 0.2)"],
-    borderColor: 			["rgba(75, 192, 192, 1)"],
+    backgroundColor: 	"rgba(75, 192, 192, 0.2)",
+    borderColor: 			"rgba(75, 192, 192, 1)",
   }
 }
 
-// initial form of the chart dataset hash
-//
-const chartDataset = _ => (
-  merge(
-    { data: [0], ...colors.red },
-    colors.red,
-  )
-)
+// initial form of the chart dataset array
+const defaultData = { data: [0] }
 
 const data1 = {
   data: {
   labels: ["0"],
-    datasets: merge(
-      { label: "speed" },
-      chartDataset,
-      colors.red,
-    ),
+    datasets: [
+      merge(
+        { label: ["speed"] },
+        defaultData,
+        colors.red,
+      )
+    ],
   },
 }
 
 const data2 = {
   data: {
   labels: ["0"],
-    datasets: merge(
-      { label: "speed" },
-      chartDataset,
-      colors.blue,
-    ),
+    datasets: [
+      merge(
+        { label: ["brake"] },
+        defaultData,
+        colors.blue,
+      )
+    ],
   },
 }
 
 const data3 = {
   data: {
   labels: ["0"],
-    datasets: merge(
-      { label: "speed" },
-      chartDataset,
-      colors.purple,
-    ),
+    datasets: [
+      merge(
+        { label: ["steerTorque"] },
+        defaultData,
+        colors.purple,
+      )
+    ],
   },
 }
 
 const data4 = {
   data: {
   labels: ["0"],
-    datasets: merge(
-      { label: "speed" },
-      chartDataset,
-      colors.green,
-    ),
+    datasets: [
+      merge(
+        { label: ["steerAngle"] },
+        defaultData,
+        colors.green,
+      )
+    ],
+  },
+}
+
+const data5 = {
+  data: {
+  labels: ["0"],
+    datasets: [
+      merge(
+        { label: ["battery"] },
+        defaultData,
+        colors.green,
+      )
+    ],
+  },
+}
+
+const data6 = {
+  data: {
+  labels: ["0"],
+    datasets: [
+      merge(
+        { label: ["fanrpm"] },
+        defaultData,
+        colors.green,
+      )
+    ],
   },
 }
 
@@ -128,44 +160,31 @@ const addData = (label, data, chart) => {
   const maxSize = 34
   if (chart.data.labels.length > maxSize) chart.data.labels.shift()
   chart.data.labels.push(label)
-  chart.data.datasets.forEach((dataset) => {
+  const datasets = chart.data.datasets
+  datasets.forEach((dataset) => {
     if (dataset.data.length > maxSize) dataset.data.shift()
     dataset.data.push(data)
   })
   chart.update()
 }
 
-const speedChartElem = document.querySelector(".speedChart")
-const brakeChartElem = document.querySelector(".brakeChart")
-const steeringTorqueChartElem = document.querySelector(".steeringTorqueChart")
-const steeringAngleChartElem  = document.querySelector(".steeringAngleChart")
-
 // chart-js charts
-
-const speedChart          = new Chart( speedChartElem,          merge(chartOptions, data1)  )
-const brakeChart          = new Chart( brakeChartElem,          merge(chartOptions4, data4) )
-const steeringTorqueChart = new Chart( steeringTorqueChartElem, merge(chartOptions2, data2) )
-const steeringAngleChart  = new Chart( steeringAngleChartElem,  merge(chartOptions3, data3) )
-
-const source = new EventSource(`http://${host}/data`)
-
-let index = 1
 
 const clock = () => {
   const now = new Date().toUTCString()
   return now
 }
 
-const selectCarState = (data) => { // select only the elements we care about atm from carstate
+const queryCarState = (data) => { // select only the elements we care about atm from carstate
   const carState = data.carState
 
   // get carState bits we're interested to graph out *note1*
   const wheelSpeed1     = carState.wheelSpeeds && carState.wheelSpeeds.rl // this can be improved by taking the avg or by charting in the same chart all 4
-  const steeringTorque  = carState.steeringTorque
-  const steeringAngle   = carState.steeringAngle
+  const steerTorque  = carState.steerTorque // Steering Torque - steeringTorque value
+  const steerAngle   = carState.steerAngle  // Steering Angle
   const brake           = carState.brake
 
-  return { wheelSpeed1, steeringTorque, steeringAngle, brake }
+  return { wheelSpeed1, steerTorque, steerAngle, brake }
 }
 
 // a clock is useful to know at which second we are (charts print the current second they're at - X axis)
@@ -178,32 +197,73 @@ const updateClock = () => {
 // renderChartTicks() - the most important method around here, calls `addData()` (add a point to a chart), renderChartTicks() runs for each "tick" (SSE message received)
 
 const renderChartTicks = (event) => {
-
   const data = JSON.parse(event.data)
-  const carState = selectCarState(data)
-  const { wheelSpeed1, steeringTorque, steeringAngle, brake } = selectCarState(data)
+  const carState = queryCarState(data)
+  const { wheelSpeed1, steerTorque, steerAngle, brake } = queryCarState(data)
   // uncomment to see all available data in carstate:
   // console.log("carstate:", ata.carState)
 
   const msgId = new Date().getSeconds()
 
   addData(msgId, wheelSpeed1,    speedChart)
-  addData(msgId, steeringTorque, steeringTorqueChart)
-  addData(msgId, steeringAngle,  steeringAngleChart)
+  addData(msgId, steerTorque, steerTorqueChart)
+  addData(msgId, steerAngle,  steerAngleChart)
   addData(msgId, brake,          brakeChart)
-
-  index++
 }
 
-// processes new message
-source.addEventListener("message", renderChartTicks, false)
+const renderChartTicksEON = (event) => {
+  const data = JSON.parse(event.data)
+  const carState = queryCarState(data)
+  const { battery, fanRPM } = queryCarState(data)
 
-// sophisticated clock lol
-setInterval(updateClock, 200)
+  const msgId = new Date().getSeconds()
+
+  addData(msgId, battery, speedChart)
+  addData(msgId, fanRPM,  steerTorqueChart)
+}
+
+
+
+let speedChart
+let brakeChart
+let steerTorqueChart
+let steerAngleChart
+
+// main function
+const renderChart = () => {
+  const speedChartElem          = document.querySelector(".speedChart")
+  const brakeChartElem          = document.querySelector(".brakeChart")
+  const steerTorqueChartElem = document.querySelector(".steerTorqueChart")
+  const steerAngleChartElem  = document.querySelector(".steerAngleChart")
+
+  console.log(merge(chartOptions3, data3))
+
+  speedChart          = new Chart( speedChartElem,          merge(chartOptions, data1)  )
+  brakeChart          = new Chart( brakeChartElem,          merge(chartOptions4, data4) )
+  steerTorqueChart = new Chart( steerTorqueChartElem, merge(chartOptions2, data2) )
+  steerAngleChart  = new Chart( steerAngleChartElem,  merge(chartOptions3, data3) )
+
+  steerAngleChart  = new Chart( steerAngleChartElem,  merge(chartOptions5, data5) )
+  steerAngleChart  = new Chart( steerAngleChartElem,  merge(chartOptions6, data6) )
+
+  const source    = new EventSource(`http://${host}/data`) // car ("carState")
+  const sourceEon = new EventSource(`http://${host}/data/eon`)
+
+  // processes new message
+  source.addEventListener("message", renderChartTicks, false)
+  source.addEventListener("message", renderChartTicksEon, false)
+
+  // sophisticated clock lol
+  setInterval(updateClock, 200)
+}
+
 
 // notes:
 //
-// // *note1* - feel free to edit with wathever elements you prefer in `selectCarState`
+// // *note1* - feel free to edit with wathever elements you prefer in `queryCarState`
 // my suggestion is to keep consistency in the js names, css classes, etc so you can call `addData` with the correct args, edit the js correctly and have the right class for the <canvas /> element
 //
 // todo: remove these notes because really?
+
+
+window.addEventListener('DOMContentLoaded', renderChart)
