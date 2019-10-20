@@ -11,7 +11,8 @@
 // docker-compose / docker-swarm host:
 // const host = "api:3000"
 
-const host = "mkvd.local:3000"
+// const host = "mkvd.local:3000"   // main
+const host = "mkvd.local:3000"  // laptop
 
 // const hostLaptop1  = "mkvmbp3.local:3000"
 // const hostLaptop2  = "mkvmsi.local:3000"
@@ -180,7 +181,7 @@ const queryCarState = (data) => { // select only the elements we care about atm 
 
   // get carState bits we're interested to graph out *note1*
   const wheelSpeed1  = carState.wheelSpeeds && carState.wheelSpeeds.rl // this can be improved by taking the avg or by charting in the same chart all 4
-  const steerTorque  = carState.steeringTorque // Steering Torque 
+  const steerTorque  = carState.steeringTorque // Steering Torque
   const steerAngle   = carState.steeringAngle  // Steering Angle
   const brake        = carState.brake
 
