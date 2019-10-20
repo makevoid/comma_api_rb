@@ -40,8 +40,10 @@ const chartOptions6 = Object.assign({}, chartOptions)
 
 // merge helpers - utils
 
-const merge2 = (obj1, obj2) =>
+const merge2 = (obj1, obj2) => {
   Object.assign(obj1, obj2)
+  return obj1
+}
 
 const merge = (obj1, obj2, obj3) => {
   if (obj3) {
@@ -73,7 +75,7 @@ const colors = {
 }
 
 // initial form of the chart dataset array
-const defaultData = { data: [0] }
+const defaultData = () => { data: [0] } // note: a function always returns a copy
 
 const data1 = {
   data: {
@@ -81,7 +83,7 @@ const data1 = {
     datasets: [
       merge(
         { label: ["speed"] },
-        defaultData,
+        defaultData(),
         colors.red,
       )
     ],
@@ -94,7 +96,7 @@ const data2 = {
     datasets: [
       merge(
         { label: ["brake"] },
-        defaultData,
+        defaultData(),
         colors.blue,
       )
     ],
@@ -107,7 +109,7 @@ const data3 = {
     datasets: [
       merge(
         { label: ["steerTorque"] },
-        defaultData,
+        defaultData(),
         colors.purple,
       )
     ],
@@ -120,7 +122,7 @@ const data4 = {
     datasets: [
       merge(
         { label: ["steerAngle"] },
-        defaultData,
+        defaultData(),
         colors.green,
       )
     ],
@@ -133,7 +135,7 @@ const data5 = {
     datasets: [
       merge(
         { label: ["battery"] },
-        defaultData,
+        defaultData(),
         colors.green,
       )
     ],
@@ -146,7 +148,7 @@ const data6 = {
     datasets: [
       merge(
         { label: ["fanrpm"] },
-        defaultData,
+        defaultData(),
         colors.green,
       )
     ],
