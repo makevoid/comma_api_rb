@@ -12,7 +12,7 @@
 // const host = "api:3000"
 
 // const host = "mkvd.local:3000"   // main
-const host = "mkvd.local:3000"  // laptop
+const host = "mkvmbp3.local:3000"  // laptop
 
 // const hostLaptop1  = "mkvmbp3.local:3000"
 // const hostLaptop2  = "mkvmsi.local:3000"
