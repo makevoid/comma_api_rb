@@ -179,10 +179,10 @@ const queryCarState = (data) => { // select only the elements we care about atm 
   const carState = data.carState
 
   // get carState bits we're interested to graph out *note1*
-  const wheelSpeed1     = carState.wheelSpeeds && carState.wheelSpeeds.rl // this can be improved by taking the avg or by charting in the same chart all 4
-  const steerTorque  = carState.steerTorque // Steering Torque - steeringTorque value
-  const steerAngle   = carState.steerAngle  // Steering Angle
-  const brake           = carState.brake
+  const wheelSpeed1  = carState.wheelSpeeds && carState.wheelSpeeds.rl // this can be improved by taking the avg or by charting in the same chart all 4
+  const steerTorque  = carState.steeringTorque // Steering Torque 
+  const steerAngle   = carState.steeringAngle  // Steering Angle
+  const brake        = carState.brake
 
   return { wheelSpeed1, steerTorque, steerAngle, brake }
 }
@@ -205,10 +205,10 @@ const renderChartTicks = (event) => {
 
   const msgId = new Date().getSeconds()
 
-  addData(msgId, wheelSpeed1,    speedChart)
+  addData(msgId, wheelSpeed1, speedChart)
   addData(msgId, steerTorque, steerTorqueChart)
   addData(msgId, steerAngle,  steerAngleChart)
-  addData(msgId, brake,          brakeChart)
+  addData(msgId, brake,       brakeChart)
 }
 
 const renderChartTicksEON = (event) => {
@@ -248,11 +248,11 @@ const renderChart = () => {
   fanRPMChart       = new Chart( fanRPMChartElem,       merge(chartOptions6, data6) )
 
   const source    = new EventSource(`http://${host}/data`) // car ("carState")
-  const sourceEon = new EventSource(`http://${host}/data/eon`)
+  // const sourceEon = new EventSource(`http://${host}/data/eon`)
 
   // processes new message
   source.addEventListener("message", renderChartTicks,    false)
-  source.addEventListener("message", renderChartTicksEon, false)
+  // source.addEventListener("message", renderChartTicksEon, false)
 
   // sophisticated clock lol
   setInterval(updateClock, 200)
