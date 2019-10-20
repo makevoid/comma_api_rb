@@ -10,8 +10,12 @@ Bundler.require :default
 # require "oj"
 # require "roda"
 
+# DEFAULT_HOST = "http://localhost:3001"
+DEFAULT_HOST = "http://mkvd.local:3001"
+# DEFAULT_HOST = "http://mkvmbp3.local"
+# DEFAULT_HOST = "http://mkvd.eu.ngrok.io" # remote1
+# DEFAULT_HOST = "http://athena-dashboard.mkv.run" # remote2
+
 CONFIG = {
-  # host: "http://athena-dashboard.mkv.run". # remote
-  host: ENV["CORS_HOST"] || "http://mkvmbp3.local" || "http://localhost", # docker
-  # host: "http://localhost:3001". # local
+  host: ENV["CORS_HOST"] || DEFAULT_HOST,
 }
