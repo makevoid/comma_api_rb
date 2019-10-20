@@ -231,20 +231,19 @@ let steerAngleChart
 
 // main function
 const renderChart = () => {
-  const speedChartElem          = document.querySelector(".speedChart")
-  const brakeChartElem          = document.querySelector(".brakeChart")
-  const steerTorqueChartElem = document.querySelector(".steerTorqueChart")
-  const steerAngleChartElem  = document.querySelector(".steerAngleChart")
+  const speedChartElem       = document.querySelector(".speedChart")
+  const brakeChartElem       = document.querySelector(".brakeChart")
+  const steerTorqueChartElem = document.querySelector(".steeringTorqueChart")
+  const steerAngleChartElem  = document.querySelector(".steeringAngleChart")
 
   console.log(merge(chartOptions3, data3))
 
-  speedChart          = new Chart( speedChartElem,          merge(chartOptions, data1)  )
-  brakeChart          = new Chart( brakeChartElem,          merge(chartOptions4, data4) )
-  steerTorqueChart = new Chart( steerTorqueChartElem, merge(chartOptions2, data2) )
-  steerAngleChart  = new Chart( steerAngleChartElem,  merge(chartOptions3, data3) )
-
-  steerAngleChart  = new Chart( steerAngleChartElem,  merge(chartOptions5, data5) )
-  steerAngleChart  = new Chart( steerAngleChartElem,  merge(chartOptions6, data6) )
+  speedChart        = new Chart( speedChartElem,          merge(chartOptions, data1)  )
+  brakeChart        = new Chart( brakeChartElem,          merge(chartOptions4, data4) )
+  steerTorqueChart  = new Chart( steerTorqueChartElem, merge(chartOptions2, data2) )
+  steerAngleChart   = new Chart( steerAngleChartElem,  merge(chartOptions3, data3) )
+  Chart   = new Chart( steerAngleChartElem,  merge(chartOptions5, data5) )
+  steerAngleChart   = new Chart( steerAngleChartElem,  merge(chartOptions6, data6) )
 
   const source    = new EventSource(`http://${host}/data`) // car ("carState")
   const sourceEon = new EventSource(`http://${host}/data/eon`)
