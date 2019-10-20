@@ -5,59 +5,25 @@
     <meta charset="utf-8">
     <title>Athena OP Live Data</title>
     <link rel="stylesheet" href="./vendor/css/bulma.css">
-    <style type="text/css" media="screen">
-      canvas {
-      }
-      .chart-container {
-        float: left;
-        width: 45%;
-        height: 220px;
-        margin: 20px 1%;
-      }
-      .clear { clear: both; }
-
-      /* dark theme */
-      /*
-      body, html > body, .section, .container.is-fluid {
-        background: #222;
-        width: 100%;
-        height: 100%;
-        min-height: 100%;
-      }
-      .title { color: #DDD; }
-      */
-
-      .clock-container, .title > span {
-        font-size: 0.4em;
-        float: right;
-        font-weight: normal;
-        line-height: 40px;
-      }
-      .clock-icon {
-        font-size: 1.6em;
-        position: relative;
-        top: 2px;
-        margin-right: 1px;
-        display: none;
-        /* doesn't display well on the tablet */
-      }
-
-    </style>
+    <link rel="stylesheet" href="./css/style.css">
   </head>
   <body>
-    <section class="section">
-      <div class="container is-fluid">
-        <p class="title">
-          Athena OP Live Data
-          <span class="clock-container">
-            <span class="clock-icon">⌚</span>
-            <span class="clock"></span>
-          </span>
+    <div class="container is-fluid">
+      <section>
+        <h1 class="title">
+          OP Live Data
+        </h1>
+        <span class="clock-container">
+          <span class="clock-icon">⌚</span>
+          <span class="clock"></span>
+        </span>
+      </section>
 
-        </p>
-        <!-- I'm making this to do a chart visualization of the available data -->
+      <!-- I'm making this to do show an example of a chart visualization of some of the data we get from the Athena, Comma, OpenPilot EON, API (phew, a lot of names for the same thing :D, the device, via athena , ) -->
 
+      <section>
         <div class="chart-container">
+          <!-- note, ids are unused, but they're nice :) -->
           <canvas id="chart1" class="speedChart"></canvas>
         </div>
         <div class="chart-container">
@@ -69,14 +35,19 @@
         <div class="chart-container">
           <canvas id="chart4" class="brakeChart"></canvas>
         </div>
-        <!-- speedOffset / steeringTorqueEps .... and more! :D -->
+        <div class="chart-container">
+          <canvas id="chart5" class="batteryChart"></canvas>
+        </div>
+        <div class="chart-container">
+          <canvas id="chart6" class="fanRPMChart"></canvas>
+        </div>
+      </section>
+      <!-- speedOffset / steeringTorqueEps .... and more! :D -->
 
-        <!-- <canvas id="chart10" class="gps1 gps1Chart chart1"></canvas>
-
-        <canvas id="chart11" class="compass compassChart chart2"></canvas> -->
-      </div>
-      <div class="clear"></div>
-    </section>
+      <!-- <canvas id="chart10" class="gps1 gps1Chart chart1"></canvas>
+      <canvas id="chart11" class="compass compassChart chart2"></canvas> -->
+    </div>
+    <div class="clear"></div>
 
     <!-- <script src="./node_modules/chart.js/dist/Chart.bundle.min.js" charset="utf-8"></script> -->
     <script src="./vendor/js/Chart.bundle.min.js" charset="utf-8"></script>
