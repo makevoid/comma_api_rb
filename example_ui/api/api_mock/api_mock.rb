@@ -2,15 +2,16 @@
 
 require_relative '../api_env'
 
+DATA = eval File.read("./mocked_data.rb")
+
+STATE = {
+  counter: 0
+}
+
 CarStateMock = -> {
-  {
-    wheelSpeeds: {
-      rl: 20 + rand(4),
-    },
-    steeringTorque: 1 + rand(3),
-    steeringAngle: 1 + rand(3),
-    brake: 0 + rand(1),
-  }
+  STATE[:counter] += 1
+  STATE[:counter] = 0  if STATE[:counter] >= DATA.size
+  DATA[STATE[:counter]].fetch :carState
 }
 
 class ApiMock < Roda
@@ -45,3 +46,15 @@ class ApiMock < Roda
   end
 
 end
+
+# unused, TODO: delete
+# CarStateMockOld = -> {
+#   {
+#     wheelSpeeds: {
+#       rl: 20 + rand(4),
+#     },
+#     steeringTorque: 1 + rand(3),
+#     steeringAngle: 1 + rand(3),
+#     brake: 0 + rand(1),
+#   }
+# }

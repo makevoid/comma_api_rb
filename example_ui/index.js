@@ -77,7 +77,7 @@ const colors = {
 // initial form of the chart dataset array
 const defaultData = () => { data: [0] } // note: a function always returns a copy
 
-const data1 = {
+const speedData = {
   data: {
   labels: ["0"],
     datasets: [
@@ -90,12 +90,12 @@ const data1 = {
   },
 }
 
-const data2 = {
+const steerAngleData = {
   data: {
   labels: ["0"],
     datasets: [
       merge(
-        { label: ["brake"] },
+        { label: ["steerAngle"] },
         defaultData(),
         colors.blue,
       )
@@ -103,7 +103,7 @@ const data2 = {
   },
 }
 
-const data3 = {
+const steerTorqueData = {
   data: {
   labels: ["0"],
     datasets: [
@@ -116,12 +116,12 @@ const data3 = {
   },
 }
 
-const data4 = {
+const accelData = {
   data: {
   labels: ["0"],
     datasets: [
       merge(
-        { label: ["steerAngle"] },
+        { label: ["accel"] },
         defaultData(),
         colors.green,
       )
@@ -129,7 +129,7 @@ const data4 = {
   },
 }
 
-const data5 = {
+const batteryData = {
   data: {
   labels: ["0"],
     datasets: [
@@ -142,7 +142,7 @@ const data5 = {
   },
 }
 
-const data6 = {
+const fanRPMData = {
   data: {
   labels: ["0"],
     datasets: [
@@ -185,9 +185,11 @@ const queryCarState = (data) => { // select only the elements we care about atm 
   const wheelSpeed1  = carState.wheelSpeeds && carState.wheelSpeeds.rl // this can be improved by taking the avg or by charting in the same chart all 4
   const steerTorque  = carState.steeringTorque // Steering Torque
   const steerAngle   = carState.steeringAngle  // Steering Angle
-  const brake        = carState.brake
+  const accel        = carState.aEgo
 
-  return { wheelSpeed1, steerTorque, steerAngle, brake }
+  console.log(accel)
+
+  return { wheelSpeed1, steerTorque, steerAngle, accel }
 }
 
 // a clock is useful to know at which second we are (charts print the current second they're at - X axis)
@@ -202,16 +204,17 @@ const updateClock = () => {
 const renderChartTicks = (event) => {
   const data = JSON.parse(event.data)
   const carState = queryCarState(data)
-  const { wheelSpeed1, steerTorque, steerAngle, brake } = queryCarState(data)
+  const { wheelSpeed1, steerTorque, steerAngle, accel } = carState
   // uncomment to see all available data in carstate:
   // console.log("carstate:", ata.carState)
 
   const msgId = new Date().getSeconds()
 
+
   addData(msgId, wheelSpeed1, speedChart)
   addData(msgId, steerTorque, steerTorqueChart)
   addData(msgId, steerAngle,  steerAngleChart)
-  addData(msgId, brake,       brakeChart)
+  addData(msgId, accel,       accelChart)
 }
 
 const renderChartTicksEON = (event) => {
@@ -228,7 +231,7 @@ const renderChartTicksEON = (event) => {
 
 
 let speedChart
-let brakeChart
+let accelChart
 let steerTorqueChart
 let steerAngleChart
 let batteryChartElem
@@ -237,18 +240,18 @@ let fanRPMChartElem
 // main function
 const renderChart = () => {
   const speedChartElem       = document.querySelector(".speedChart")
-  const brakeChartElem       = document.querySelector(".brakeChart")
+  const accelChartElem       = document.querySelector(".accelChart")
   const steerTorqueChartElem = document.querySelector(".steeringTorqueChart")
   const steerAngleChartElem  = document.querySelector(".steeringAngleChart")
   const batteryChartElem     = document.querySelector(".batteryChart")
   const fanRPMChartElem      = document.querySelector(".fanRPMChart")
 
-  speedChart        = new Chart( speedChartElem,        merge(chartOptions, data1)  )
-  brakeChart        = new Chart( brakeChartElem,        merge(chartOptions4, data4) )
-  steerTorqueChart  = new Chart( steerTorqueChartElem,  merge(chartOptions2, data2) )
-  steerAngleChart   = new Chart( steerAngleChartElem,   merge(chartOptions3, data3) )
-  batteryChart      = new Chart( batteryChartElem,      merge(chartOptions5, data5) )
-  fanRPMChart       = new Chart( fanRPMChartElem,       merge(chartOptions6, data6) )
+  speedChart        = new Chart( speedChartElem,        merge(chartOptions, speedData)  )
+  accelChart        = new Chart( accelChartElem,        merge(chartOptions4, accelData) )
+  steerTorqueChart  = new Chart( steerTorqueChartElem,  merge(chartOptions2, steerAngleData) )
+  steerAngleChart   = new Chart( steerAngleChartElem,   merge(chartOptions3, steerTorqueData) )
+  batteryChart      = new Chart( batteryChartElem,      merge(chartOptions5, batteryData) )
+  fanRPMChart       = new Chart( fanRPMChartElem,       merge(chartOptions6, fanRPMData) )
 
   const source    = new EventSource(`http://${host}/data`) // car ("carState")
   // const sourceEon = new EventSource(`http://${host}/data/eon`)
