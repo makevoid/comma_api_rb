@@ -5,6 +5,8 @@ module CommaAPI
     extend ConfigAthena
     extend HTTP
 
+    RPC_TIMEOUT = 3000 # 3s timeout considering mobile networks and messages to be not critical (at least all the GET requests)
+
     STATE = {
       rpc_id: 0
     }
@@ -14,6 +16,10 @@ module CommaAPI
     }
 
     class << self
+
+      def getMessage(service:)
+        post_rpc m: "getMessage", service: service
+      end
 
       def health
         post_rpc m: "getMessage", service: "health"
@@ -57,7 +63,7 @@ module CommaAPI
       def rpc_msg(m:, service:)
         {
           method: m,
-          params: { service: service, timeout: 3000 },
+          params: { service: service, timeout: RPC_TIMEOUT },
           jsonrpc: "2.0",
           id: RpcId.(),
         }.str_keys.to_json
@@ -69,16 +75,21 @@ module CommaAPI
         data = rpc_msg(m: m, service: service)
         begin
           resp = post_request url: url, data: data
-          # puts "response: #{resp}" # debug - todo remove
-        rescue
+        rescue err
           return RPCError.new "JSON Parse Error"
         end
         parse_rpc resp, service: service
       end
 
       def parse_rpc(resp, service:)
-        return RPCError.new if resp["error"] == "Timed out"
-        return RPCError.new if resp["error"] && resp["error"]["message"] == "Server error"
+        if resp["error"] == "Timed out"
+          puts "timeout"
+          return RPCError.new
+        end
+        if resp["error"] && resp["error"]["message"] == "Server error"
+          puts "rescued error - api error: #{resp["error"]["message"]}"
+          return RPCError.new
+        end
         result = resp.fetch "result"
         result = result[service] if result[service]
         result = result["androidLogEntry"] if service == "androidLog"
