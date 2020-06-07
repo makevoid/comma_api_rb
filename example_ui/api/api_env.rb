@@ -13,9 +13,9 @@ Bundler.require :default
 # DEFAULT_HOST = "http://localhost:3001"
 
 # DEFAULT_HOST = "http://mkvd.local:3001"  # main
-DEFAULT_HOST = "http://mkvmbp3.local:3001" # laptop
+# DEFAULT_HOST = "http://mkvmbp3.local:3001" # laptop
 
-# DEFAULT_HOST = "http://mkvd.eu.ngrok.io" # remote1
+DEFAULT_HOST = "http://mkvd.eu.ngrok.io" # remote1
 # DEFAULT_HOST = "http://athena-dashboard.mkv.run" # remote2
 
 CONFIG = {
